@@ -41,8 +41,8 @@
 		2717E3BC19A9655E00405AA0 = {
 			isa = PBXGroup;
 			children = (
-				2717E3C819A9655E00405AA0 /* FileInput */,
-				2717E3D219A9655F00405AA0 /* FileInputTests */,
+				2717E3DF19A9867700405AA0 /* Source */,
+				2717E3E019A986B300405AA0 /* Test */,
 				2717E3C719A9655E00405AA0 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -56,38 +56,22 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		2717E3C819A9655E00405AA0 /* FileInput */ = {
+		2717E3DF19A9867700405AA0 /* Source */ = {
 			isa = PBXGroup;
 			children = (
 				2717E3CB19A9655F00405AA0 /* FileInput.h */,
-				2717E3C919A9655E00405AA0 /* Supporting Files */,
-			);
-			path = FileInput;
-			sourceTree = "<group>";
-		};
-		2717E3C919A9655E00405AA0 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
 				2717E3CA19A9655E00405AA0 /* Info.plist */,
 			);
-			name = "Supporting Files";
+			path = Source;
 			sourceTree = "<group>";
 		};
-		2717E3D219A9655F00405AA0 /* FileInputTests */ = {
+		2717E3E019A986B300405AA0 /* Test */ = {
 			isa = PBXGroup;
 			children = (
 				2717E3D519A9655F00405AA0 /* FileInputTests.swift */,
-				2717E3D319A9655F00405AA0 /* Supporting Files */,
-			);
-			path = FileInputTests;
-			sourceTree = "<group>";
-		};
-		2717E3D319A9655F00405AA0 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
 				2717E3D419A9655F00405AA0 /* Info.plist */,
 			);
-			name = "Supporting Files";
+			path = Test;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -300,7 +284,7 @@
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				FRAMEWORK_VERSION = A;
-				INFOPLIST_FILE = FileInput/Info.plist;
+				INFOPLIST_FILE = Source/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -317,7 +301,7 @@
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				FRAMEWORK_VERSION = A;
-				INFOPLIST_FILE = FileInput/Info.plist;
+				INFOPLIST_FILE = Source/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -337,7 +321,7 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = FileInputTests/Info.plist;
+				INFOPLIST_FILE = Test/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -351,7 +335,7 @@
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = FileInputTests/Info.plist;
+				INFOPLIST_FILE = Test/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -376,6 +360,7 @@
 				2717E3DB19A9655F00405AA0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		2717E3DC19A9655F00405AA0 /* Build configuration list for PBXNativeTarget "FileInputTests" */ = {
 			isa = XCConfigurationList;
@@ -384,6 +369,7 @@
 				2717E3DE19A9655F00405AA0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
