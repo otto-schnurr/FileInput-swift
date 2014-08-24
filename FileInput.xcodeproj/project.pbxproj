@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		2717E3CC19A9655F00405AA0 /* FileInput.h in Headers */ = {isa = PBXBuildFile; fileRef = 2717E3CB19A9655F00405AA0 /* FileInput.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		277DB72919A9955200F0AF48 /* FileInput_tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2717E3D519A9655F00405AA0 /* FileInput_tests.swift */; };
+		277DB72E19AAA2E300F0AF48 /* FileInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 277DB72D19AAA2E300F0AF48 /* FileInput.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -21,6 +22,7 @@
 		277DB72A19AA77F400F0AF48 /* LICENSE.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
 		277DB72B19AA780300F0AF48 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		277DB72C19AA9CAD00F0AF48 /* TODO.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = TODO.md; sourceTree = "<group>"; };
+		277DB72D19AAA2E300F0AF48 /* FileInput.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileInput.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +68,7 @@
 			isa = PBXGroup;
 			children = (
 				2717E3CB19A9655F00405AA0 /* FileInput.h */,
+				277DB72D19AAA2E300F0AF48 /* FileInput.swift */,
 				2717E3CA19A9655E00405AA0 /* Info.plist */,
 			);
 			path = Source;
@@ -186,6 +189,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				277DB72E19AAA2E300F0AF48 /* FileInput.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -308,6 +312,7 @@
 		2717E3DA19A9655F00405AA0 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -319,12 +324,14 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
 		2717E3DB19A9655F00405AA0 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;

@@ -2,7 +2,6 @@ Todo
 ====
 
 ### Add Empty `FileInput`
-- Preliminary class.
 - Preliminary initializer.
 - logic test: Default constructor.
 - logic test: Construct with bad file path.
@@ -28,8 +27,9 @@ Todo
 ### README Documentation
 - Track down FileInput doc from Python.
 - section: Usage
+- section: Dependencies
 - section: Installation
-- section: Motivation (please Sherlock me).
+- section: Motivation (please Sherlock this).
 - section: HAQ (Hypothetically Asked Questions)
 
 ### `FileInput` Documentation
