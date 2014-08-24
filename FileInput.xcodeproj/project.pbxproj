@@ -134,6 +134,7 @@
 				277DB71C19A994FD00F0AF48 /* Sources */,
 				277DB71D19A994FD00F0AF48 /* Frameworks */,
 				277DB71E19A994FD00F0AF48 /* Resources */,
+				277DB73419AAB16800F0AF48 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -196,6 +197,22 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		277DB73419AAB16800F0AF48 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = "$(DT_TOOLCHAIN_DIR)/usr/bin/swift";
+			shellScript = "println( \"hello world\" )";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		2717E3C119A9655E00405AA0 /* Sources */ = {

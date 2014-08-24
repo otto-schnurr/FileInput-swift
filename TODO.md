@@ -3,7 +3,6 @@ Todo
 
 ### Add Empty `FileInput`
 - research: Add script tests to logic test build.
-    - How to call Swift script.
 	 - How to indicate error on exit.
 - verify: Import into bash REPL. Fix duplicate symbols.
     - If possible, duplicate logic tests in scripts.
