@@ -8,16 +8,16 @@
 
 /* Begin PBXBuildFile section */
 		2717E3CC19A9655F00405AA0 /* FileInput.h in Headers */ = {isa = PBXBuildFile; fileRef = 2717E3CB19A9655F00405AA0 /* FileInput.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		2717E3D619A9655F00405AA0 /* FileInputTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2717E3D519A9655F00405AA0 /* FileInputTests.swift */; };
+		277DB72919A9955200F0AF48 /* FileInputTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2717E3D519A9655F00405AA0 /* FileInputTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		2717E3C619A9655E00405AA0 /* FileInput.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = FileInput.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2717E3CA19A9655E00405AA0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2717E3CB19A9655F00405AA0 /* FileInput.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FileInput.h; sourceTree = "<group>"; };
-		2717E3D119A9655F00405AA0 /* FileInputTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FileInputTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2717E3D419A9655F00405AA0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2717E3D519A9655F00405AA0 /* FileInputTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileInputTests.swift; sourceTree = "<group>"; };
+		277DB72019A994FD00F0AF48 /* FileInput-LogicTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "FileInput-LogicTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -28,7 +28,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		2717E3CE19A9655F00405AA0 /* Frameworks */ = {
+		277DB71D19A994FD00F0AF48 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -51,7 +51,7 @@
 			isa = PBXGroup;
 			children = (
 				2717E3C619A9655E00405AA0 /* FileInput.framework */,
-				2717E3D119A9655F00405AA0 /* FileInputTests.xctest */,
+				277DB72019A994FD00F0AF48 /* FileInput-LogicTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -106,21 +106,21 @@
 			productReference = 2717E3C619A9655E00405AA0 /* FileInput.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		2717E3D019A9655F00405AA0 /* FileInputTests */ = {
+		277DB71F19A994FD00F0AF48 /* FileInput-LogicTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 2717E3DC19A9655F00405AA0 /* Build configuration list for PBXNativeTarget "FileInputTests" */;
+			buildConfigurationList = 277DB72619A994FE00F0AF48 /* Build configuration list for PBXNativeTarget "FileInput-LogicTests" */;
 			buildPhases = (
-				2717E3CD19A9655F00405AA0 /* Sources */,
-				2717E3CE19A9655F00405AA0 /* Frameworks */,
-				2717E3CF19A9655F00405AA0 /* Resources */,
+				277DB71C19A994FD00F0AF48 /* Sources */,
+				277DB71D19A994FD00F0AF48 /* Frameworks */,
+				277DB71E19A994FD00F0AF48 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = FileInputTests;
-			productName = FileInputTests;
-			productReference = 2717E3D119A9655F00405AA0 /* FileInputTests.xctest */;
+			name = "FileInput-LogicTests";
+			productName = "FileInput-LogicTests";
+			productReference = 277DB72019A994FD00F0AF48 /* FileInput-LogicTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -135,7 +135,7 @@
 					2717E3C519A9655E00405AA0 = {
 						CreatedOnToolsVersion = 6.0;
 					};
-					2717E3D019A9655F00405AA0 = {
+					277DB71F19A994FD00F0AF48 = {
 						CreatedOnToolsVersion = 6.0;
 					};
 				};
@@ -153,7 +153,7 @@
 			projectRoot = "";
 			targets = (
 				2717E3C519A9655E00405AA0 /* FileInput */,
-				2717E3D019A9655F00405AA0 /* FileInputTests */,
+				277DB71F19A994FD00F0AF48 /* FileInput-LogicTests */,
 			);
 		};
 /* End PBXProject section */
@@ -166,7 +166,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		2717E3CF19A9655F00405AA0 /* Resources */ = {
+		277DB71E19A994FD00F0AF48 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -183,11 +183,11 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		2717E3CD19A9655F00405AA0 /* Sources */ = {
+		277DB71C19A994FD00F0AF48 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2717E3D619A9655F00405AA0 /* FileInputTests.swift in Sources */,
+				277DB72919A9955200F0AF48 /* FileInputTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -309,7 +309,7 @@
 			};
 			name = Release;
 		};
-		2717E3DD19A9655F00405AA0 /* Debug */ = {
+		277DB72719A994FE00F0AF48 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
@@ -327,7 +327,7 @@
 			};
 			name = Debug;
 		};
-		2717E3DE19A9655F00405AA0 /* Release */ = {
+		277DB72819A994FE00F0AF48 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
@@ -362,14 +362,13 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		2717E3DC19A9655F00405AA0 /* Build configuration list for PBXNativeTarget "FileInputTests" */ = {
+		277DB72619A994FE00F0AF48 /* Build configuration list for PBXNativeTarget "FileInput-LogicTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				2717E3DD19A9655F00405AA0 /* Debug */,
-				2717E3DE19A9655F00405AA0 /* Release */,
+				277DB72719A994FE00F0AF48 /* Debug */,
+				277DB72819A994FE00F0AF48 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
