@@ -18,6 +18,8 @@
 		2717E3D419A9655F00405AA0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2717E3D519A9655F00405AA0 /* FileInput_tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileInput_tests.swift; sourceTree = "<group>"; };
 		277DB72019A994FD00F0AF48 /* FileInput-LogicTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "FileInput-LogicTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		277DB72A19AA77F400F0AF48 /* LICENSE.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
+		277DB72B19AA780300F0AF48 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -41,6 +43,8 @@
 		2717E3BC19A9655E00405AA0 = {
 			isa = PBXGroup;
 			children = (
+				277DB72B19AA780300F0AF48 /* README.md */,
+				277DB72A19AA77F400F0AF48 /* LICENSE.txt */,
 				2717E3DF19A9867700405AA0 /* Source */,
 				2717E3E019A986B300405AA0 /* Test */,
 				2717E3C719A9655E00405AA0 /* Products */,
