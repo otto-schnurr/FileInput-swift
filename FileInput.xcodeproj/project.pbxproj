@@ -13,6 +13,16 @@
 		277DB72F19AAA5D700F0AF48 /* FileInput.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2717E3C619A9655E00405AA0 /* FileInput.framework */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		277DB73019AAAA6800F0AF48 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2717E3BD19A9655E00405AA0 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2717E3C519A9655E00405AA0;
+			remoteInfo = FileInput;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		2717E3C619A9655E00405AA0 /* FileInput.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = FileInput.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2717E3CA19A9655E00405AA0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -128,6 +138,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				277DB73119AAAA6800F0AF48 /* PBXTargetDependency */,
 			);
 			name = "FileInput-LogicTests";
 			productName = "FileInput-LogicTests";
@@ -204,6 +215,14 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		277DB73119AAAA6800F0AF48 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 2717E3C519A9655E00405AA0 /* FileInput */;
+			targetProxy = 277DB73019AAAA6800F0AF48 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		2717E3D719A9655F00405AA0 /* Debug */ = {
