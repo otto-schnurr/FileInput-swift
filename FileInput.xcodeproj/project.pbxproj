@@ -10,6 +10,7 @@
 		2717E3CC19A9655F00405AA0 /* FileInput.h in Headers */ = {isa = PBXBuildFile; fileRef = 2717E3CB19A9655F00405AA0 /* FileInput.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		277DB72919A9955200F0AF48 /* FileInput_tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2717E3D519A9655F00405AA0 /* FileInput_tests.swift */; };
 		277DB72E19AAA2E300F0AF48 /* FileInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 277DB72D19AAA2E300F0AF48 /* FileInput.swift */; };
+		277DB72F19AAA5D700F0AF48 /* FileInput.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2717E3C619A9655E00405AA0 /* FileInput.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,6 +38,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				277DB72F19AAA5D700F0AF48 /* FileInput.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -9,6 +9,12 @@
 //     http://opensource.org/licenses/MIT
 //
 
-class FileInput {
-	
+public class FileInput {
+
+	public init() { }
+
+	public var filename: String? {
+		get { return "-" }
+	}
+
 }
