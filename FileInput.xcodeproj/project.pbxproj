@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		2717E3CC19A9655F00405AA0 /* FileInput.h in Headers */ = {isa = PBXBuildFile; fileRef = 2717E3CB19A9655F00405AA0 /* FileInput.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		277DB72919A9955200F0AF48 /* FileInputTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2717E3D519A9655F00405AA0 /* FileInputTests.swift */; };
+		277DB72919A9955200F0AF48 /* FileInput_tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2717E3D519A9655F00405AA0 /* FileInput_tests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -16,7 +16,7 @@
 		2717E3CA19A9655E00405AA0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2717E3CB19A9655F00405AA0 /* FileInput.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FileInput.h; sourceTree = "<group>"; };
 		2717E3D419A9655F00405AA0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		2717E3D519A9655F00405AA0 /* FileInputTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileInputTests.swift; sourceTree = "<group>"; };
+		2717E3D519A9655F00405AA0 /* FileInput_tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileInput_tests.swift; sourceTree = "<group>"; };
 		277DB72019A994FD00F0AF48 /* FileInput-LogicTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "FileInput-LogicTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -68,7 +68,7 @@
 		2717E3E019A986B300405AA0 /* Test */ = {
 			isa = PBXGroup;
 			children = (
-				2717E3D519A9655F00405AA0 /* FileInputTests.swift */,
+				2717E3D519A9655F00405AA0 /* FileInput_tests.swift */,
 				2717E3D419A9655F00405AA0 /* Info.plist */,
 			);
 			path = Test;
@@ -187,7 +187,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				277DB72919A9955200F0AF48 /* FileInputTests.swift in Sources */,
+				277DB72919A9955200F0AF48 /* FileInput_tests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -369,6 +369,7 @@
 				277DB72819A994FE00F0AF48 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

@@ -1,5 +1,5 @@
 //
-//  FileInputTests.swift
+//  FileInput_tests.swift
 //
 //  Created by Otto Schnurr on 8/23/2014.
 //  Copyright (c) 2014 Otto Schnurr. All rights reserved.
@@ -12,7 +12,7 @@
 import Cocoa
 import XCTest
 
-class FileInputTests: XCTestCase {
+class FileInput_tests: XCTestCase {
     
     override func setUp() {
         super.setUp()
