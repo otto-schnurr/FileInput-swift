@@ -1,10 +1,6 @@
 Todo
 ====
 
-### Add Empty `FileInput`
-- verify: Fix duplicate symbols.
-    - If possible, duplicate logic tests in scripts.
-
 ### Implement `FileInput`
 - Dump current research into implementation.
 - Revisit automatic casting to `UnsafePointer`.
