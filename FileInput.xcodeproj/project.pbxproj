@@ -9,7 +9,19 @@
 /* Begin PBXBuildFile section */
 		2717E3CC19A9655F00405AA0 /* FileInput.h in Headers */ = {isa = PBXBuildFile; fileRef = 2717E3CB19A9655F00405AA0 /* FileInput.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		277DB72919A9955200F0AF48 /* FileInput_tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2717E3D519A9655F00405AA0 /* FileInput_tests.swift */; };
+		277DB72E19AAA2E300F0AF48 /* FileInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 277DB72D19AAA2E300F0AF48 /* FileInput.swift */; };
+		277DB72F19AAA5D700F0AF48 /* FileInput.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2717E3C619A9655E00405AA0 /* FileInput.framework */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		277DB73019AAAA6800F0AF48 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2717E3BD19A9655E00405AA0 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2717E3C519A9655E00405AA0;
+			remoteInfo = FileInput;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		2717E3C619A9655E00405AA0 /* FileInput.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = FileInput.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -21,6 +33,7 @@
 		277DB72A19AA77F400F0AF48 /* LICENSE.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
 		277DB72B19AA780300F0AF48 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		277DB72C19AA9CAD00F0AF48 /* TODO.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = TODO.md; sourceTree = "<group>"; };
+		277DB72D19AAA2E300F0AF48 /* FileInput.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileInput.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -35,6 +48,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				277DB72F19AAA5D700F0AF48 /* FileInput.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -66,6 +80,7 @@
 			isa = PBXGroup;
 			children = (
 				2717E3CB19A9655F00405AA0 /* FileInput.h */,
+				277DB72D19AAA2E300F0AF48 /* FileInput.swift */,
 				2717E3CA19A9655E00405AA0 /* Info.plist */,
 			);
 			path = Source;
@@ -119,10 +134,12 @@
 				277DB71C19A994FD00F0AF48 /* Sources */,
 				277DB71D19A994FD00F0AF48 /* Frameworks */,
 				277DB71E19A994FD00F0AF48 /* Resources */,
+				277DB73419AAB16800F0AF48 /* ShellScript */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				277DB73119AAAA6800F0AF48 /* PBXTargetDependency */,
 			);
 			name = "FileInput-LogicTests";
 			productName = "FileInput-LogicTests";
@@ -181,11 +198,28 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		277DB73419AAB16800F0AF48 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = "$(DT_TOOLCHAIN_DIR)/usr/bin/swift -F $(CONFIGURATION_BUILD_DIR)";
+			shellScript = "import FileInput\nprintln( \"testing: Can import FileInput module.\" )\nexit( EXIT_SUCCESS )";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		2717E3C119A9655E00405AA0 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				277DB72E19AAA2E300F0AF48 /* FileInput.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -198,6 +232,14 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		277DB73119AAAA6800F0AF48 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 2717E3C519A9655E00405AA0 /* FileInput */;
+			targetProxy = 277DB73019AAAA6800F0AF48 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		2717E3D719A9655F00405AA0 /* Debug */ = {
@@ -308,6 +350,7 @@
 		2717E3DA19A9655F00405AA0 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -316,15 +359,17 @@
 				FRAMEWORK_VERSION = A;
 				INFOPLIST_FILE = Source/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
 		2717E3DB19A9655F00405AA0 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -333,7 +378,7 @@
 				FRAMEWORK_VERSION = A;
 				INFOPLIST_FILE = Source/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 			};
