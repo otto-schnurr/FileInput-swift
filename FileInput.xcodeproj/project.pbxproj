@@ -209,8 +209,8 @@
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = "$(DT_TOOLCHAIN_DIR)/usr/bin/swift";
-			shellScript = "println( \"hello world\" )";
+			shellPath = "$(DT_TOOLCHAIN_DIR)/usr/bin/swift -F $(CONFIGURATION_BUILD_DIR)";
+			shellScript = "import FileInput\nprintln( \"testing: Can import FileInput module.\" )\nexit( EXIT_SUCCESS )";
 		};
 /* End PBXShellScriptBuildPhase section */
 
