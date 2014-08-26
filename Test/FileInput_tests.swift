@@ -14,7 +14,7 @@ import XCTest
 import FileInput
 
 class FileInput_tests: XCTestCase {
-	func test_defaultFileInput_usesStandardInput() {
-		XCTAssertEqual( FileInput().filename!, "-", "" )
-	}
+    func test_defaultFileInput_usesStandardInput() {
+        XCTAssertEqual( FileInput().filename!, "-", "" )
+    }
 }

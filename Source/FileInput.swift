@@ -10,11 +10,11 @@
 //
 
 public class FileInput {
-
-	public init() { }
-
-	public var filename: String? {
-		get { return "-" }
-	}
-
+    
+    public init() { }
+    
+    public var filename: String? {
+        get { return "-" }
+    }
+    
 }
