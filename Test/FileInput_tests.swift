@@ -23,6 +23,11 @@ class FileInput_tests: XCTestCase {
         XCTAssertEqual( FileInput().filePath!, "-", "" )
     }
     
+    func test_badFileInput_returnsNoLines() {
+        var lines = FileInput( filePath: _badFilePath() )
+        XCTAssertNil( lines.nextLine(), "" )
+    }
+    
     func test_badFileInput_iteratesNoLines() {
         var lineWasRetrieved = false
         for line in FileInput( filePath: _badFilePath() ) {
@@ -30,4 +35,5 @@ class FileInput_tests: XCTestCase {
         }
         XCTAssertFalse( lineWasRetrieved, "" )
     }
+    
 }

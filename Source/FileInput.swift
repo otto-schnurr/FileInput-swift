@@ -27,4 +27,7 @@ public class FileInput: SequenceType {
         get { return "-" }
     }
     
+    public func nextLine() -> LineOfText? {
+        return nil
+    }
 }
