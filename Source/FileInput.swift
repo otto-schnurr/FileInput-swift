@@ -9,11 +9,21 @@
 //     http://opensource.org/licenses/MIT
 //
 
-public class FileInput {
+public typealias LineOfText = String
+
+public class FileInput: SequenceType {
+
+    public typealias Generator = GeneratorOf<LineOfText>
+    
+    public func generate() -> Generator {
+        return Generator { nil }
+    }
     
     public init() { }
     
-    public var filename: String? {
+    public init( filePath: String ) { }
+    
+    public var filePath: String? {
         get { return "-" }
     }
     

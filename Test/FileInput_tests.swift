@@ -13,8 +13,21 @@ import Cocoa
 import XCTest
 import FileInput
 
+private func _badFilePath() -> String {
+    return "foo"
+}
+
 class FileInput_tests: XCTestCase {
+
     func test_defaultFileInput_usesStandardInput() {
-        XCTAssertEqual( FileInput().filename!, "-", "" )
+        XCTAssertEqual( FileInput().filePath!, "-", "" )
+    }
+    
+    func test_badFileInput_iteratesNoLines() {
+        var lineWasRetrieved = false
+        for line in FileInput( filePath: _badFilePath() ) {
+            lineWasRetrieved = true
+        }
+        XCTAssertFalse( lineWasRetrieved, "" )
     }
 }
