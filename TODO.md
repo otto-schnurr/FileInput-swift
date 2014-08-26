@@ -2,11 +2,9 @@ Todo
 ====
 
 ### Implement `FileInput`
-- figure out: Add text files to logic test suite.
-- logic test: Iterate one basic file.
-- Revisit automatic casting to `UnsafePointer`.
 - logic test: Iterate two basic files.
 - logic test: Iterate file with long lines.
+- Revisit automatic casting to `UnsafePointer`.
 - verify: If possible, duplicate logic tests in scripts.
 
 ### Implement `input()`
