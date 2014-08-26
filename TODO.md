@@ -2,9 +2,9 @@ Todo
 ====
 
 ### Implement `FileInput`
-- logic test: Iterate two basic files.
 - logic test: Iterate file with long lines.
 - Revisit automatic casting to `UnsafePointer`.
+- Revisit Runpath search paths. Fix for resolving symbols in debugger.
 - verify: If possible, duplicate logic tests in scripts.
 
 ### Implement `input()`
