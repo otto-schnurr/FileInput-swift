@@ -59,12 +59,12 @@ class FileInput_tests: XCTestCase {
         XCTAssertFalse( lineWasRetrieved, "" )
     }
     
-    func test_goodFileInput_returnsLines() {
+    func test_fileInput_returnsLines() {
         var lines = FileInput( filePath: _licenseFilePath() )
         XCTAssertNotNil( lines.nextLine(), "" )
     }
     
-    func test_goodFileInput_iteratesLines() {
+    func test_fileInput_iteratesLines() {
         var lineWasRetrieved = false
         for line in FileInput( filePath: _licenseFilePath() ) {
             lineWasRetrieved = true
@@ -72,7 +72,7 @@ class FileInput_tests: XCTestCase {
         XCTAssertTrue( lineWasRetrieved, "" )
     }
     
-    func test_twoFileInput_iteratesBothFiles() {
+    func test_fileInput_canIterateTwoFiles() {
         let licensePath = _licenseFilePath()
         let readmePath = _readmeFilePath()
         let filePaths = [ licensePath, readmePath ]
@@ -107,7 +107,7 @@ class FileInput_tests: XCTestCase {
         XCTAssertGreaterThan( readmeLineCount, 0, "Failed to parse README." )
     }
     
-    func test_longFileInput_preservesLongLines() {
+    func test_fileInput_preservesLongLines() {
         var lineCount = 0
         for line in FileInput( filePath: _longLineFilePath() ) {
             switch lineCount++ {
