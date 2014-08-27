@@ -33,9 +33,7 @@ public class FileInput: SequenceType {
     }
 
     public var filePath: String? {
-        get {
-            return filePaths.count > 0 ? filePaths[0] : nil
-        }
+        return filePaths.count > 0 ? filePaths[0] : nil
     }
     
     public func nextLine() -> LineOfText? {
@@ -70,10 +68,8 @@ private let _stdinName = "-"
 private class _FileLines: SequenceType {
 
     typealias Generator = GeneratorOf<LineOfText>
-    typealias CharBuffer = UnsafeMutableBufferPointer<CChar>
-    
     var file: UnsafeMutablePointer<FILE>
-    var chars = Array<CChar>( count: 512, repeatedValue: 0 )
+    var charBuffer = [CChar]( count: 512, repeatedValue: 0 )
     
     init( file: UnsafeMutablePointer<FILE> ) {
         self.file = file
@@ -103,26 +99,18 @@ private class _FileLines: SequenceType {
         return lines
     }
     
-    func generate() -> Generator {
-        return Generator { self.nextLine() }
-    }
+    func generate() -> Generator { return Generator { self.nextLine() } }
     
     func nextChunk() -> String? {
-        func readFileToBuffer( inout buffer: CharBuffer ) -> String? {
-            var result: String? = nil
-            let bufferSize = Int32( buffer.endIndex - buffer.startIndex )
-            let bufferPointer = buffer.baseAddress
-            
-            if file != nil && bufferSize != 0 {
-                if fgets( bufferPointer, bufferSize, self.file ) != nil {
-                    result = String.fromCString( bufferPointer )
-                }
+        var result: String? = nil;
+    
+        if file != nil {
+            if fgets( &charBuffer, Int32( charBuffer.count ), file ) != nil {
+                result = String.fromCString( charBuffer )
             }
-            
-            return result
         }
         
-        return chars.withUnsafeMutableBufferPointer( readFileToBuffer )
+        return result
     }
     
     func nextLine() -> LineOfText? {
