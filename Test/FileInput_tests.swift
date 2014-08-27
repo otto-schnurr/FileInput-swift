@@ -27,6 +27,19 @@ private func _readmeFilePath() -> String {
     return classBundle.pathForResource( "README", ofType: "md" )
 }
 
+private func _longLineFilePath() -> String {
+    let classBundle = NSBundle( forClass: FileInput_tests.self )
+    return classBundle.pathForResource( "long-lines", ofType: "txt" )
+}
+
+extension String {
+    var length: Int { return countElements( self ) }
+}
+
+
+// MARK: -
+
+
 class FileInput_tests: XCTestCase {
 
     func test_defaultFileInput_usesStandardInput() {
@@ -59,7 +72,6 @@ class FileInput_tests: XCTestCase {
         XCTAssertTrue( lineWasRetrieved, "" )
     }
     
-
     func test_twoFileInput_iteratesBothFiles() {
         let licensePath = _licenseFilePath()
         let readmePath = _readmeFilePath()
@@ -94,4 +106,19 @@ class FileInput_tests: XCTestCase {
         XCTAssertGreaterThan( licenseLineCount, 0, "Failed to parse LICENSE." )
         XCTAssertGreaterThan( readmeLineCount, 0, "Failed to parse README." )
     }
+    
+    func test_longFileInput_preservesLongLines() {
+        var lineCount = 0
+        for line in FileInput( filePath: _longLineFilePath() ) {
+            switch lineCount++ {
+                case 0: XCTAssertEqual( line.length, 68, "" )
+                case 2: XCTAssertEqual( line.length, 407, "" )
+                case 4: XCTAssertEqual( line.length, 1631, "" )
+                default: XCTAssertGreaterThan( line.length, 0, "" )
+            }
+        }
+        
+        XCTAssertGreaterThan( lineCount, 0, "Failed to parse any long lines." )
+    }
+    
 }

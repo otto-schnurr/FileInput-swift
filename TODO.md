@@ -2,8 +2,8 @@ Todo
 ====
 
 ### Implement `FileInput`
-- logic test: Iterate file with long lines.
 - Revisit automatic casting to `UnsafePointer`.
+- Revisit if "get" keyword is necessary.
 - Revisit Runpath search paths. Fix for resolving symbols in debugger.
 - verify: If possible, duplicate logic tests in scripts.
 
