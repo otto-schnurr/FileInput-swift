@@ -152,8 +152,9 @@
 				277DB71C19A994FD00F0AF48 /* Sources */,
 				277DB71D19A994FD00F0AF48 /* Frameworks */,
 				277DB71E19A994FD00F0AF48 /* Resources */,
-				277DB73419AAB16800F0AF48 /* ShellScript */,
 				277DB73919ACFD4B00F0AF48 /* CopyFiles */,
+				277DB73419AAB16800F0AF48 /* ShellScript */,
+				27DD8FA919AFA49E008F925F /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -232,6 +233,19 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = "$(DT_TOOLCHAIN_DIR)/usr/bin/swift -F $(CONFIGURATION_BUILD_DIR)";
 			shellScript = "import FileInput\nprintln( \"testing: Can import FileInput module.\" )\nexit( EXIT_SUCCESS )";
+		};
+		27DD8FA919AFA49E008F925F /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = "$(DT_TOOLCHAIN_DIR)/usr/bin/swift -F $(CONFIGURATION_BUILD_DIR)";
+			shellScript = "import FileInput\nprintln( \"testing: bad file path\" )\n\nfunc _assertTrue<T: BooleanType>(\n   condition: @autoclosure () -> T,\n   message: String\n) {\n    if ( !condition() )\n    {\n        println( \"failed \\(message)\" )\n        exit( EXIT_FAILURE )\n    }\n}\n\nlet badFilePath = \"foo\"\nvar badLines = FileInput( filePath: badFilePath )\n_assertTrue( badLines.nextLine() == nil, \"Bad FileInput should have no lines.\" )\n\nvar lineWasRetrieved = false\nfor line in FileInput( filePath: badFilePath ) {\n    lineWasRetrieved = true\n}\n_assertTrue( !lineWasRetrieved, \"Bad FileInput should not iterate.\" )\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
