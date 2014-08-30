@@ -1,19 +1,10 @@
 Todo
 ====
 
-### Implement `FileInput`
-- Dump current research into implementation.
-- Revisit automatic casting to `UnsafePointer`.
-- figure out: Add text files to logic test suite.
-- logic test: Construct with bad file path.
-- logic test: Iterate one basic file.
-- logic test: Iterate two basic files.
-- logic test: Iterate file with long lines.
-- verify: If possible, duplicate logic tests in scripts.
-
 ### Implement `input()`
 - Add current code for `input()`.
 - verify: Test argv arguments for `input()`.
+- verify: Duplicate remaining logic tests in scripts.
 
 ### README Documentation
 - Track down FileInput doc from Python.
@@ -29,3 +20,6 @@ Todo
 - Add doc comments to public interface.
 - Compile doc comments into markdown document.
 - Publish md and reference it from README.
+
+### Follow Up
+- Revisit the debugger symbol issue [mentioned here](https://devforums.apple.com/message/1023288#1023288).

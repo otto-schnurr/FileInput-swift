@@ -11,6 +11,9 @@
 		277DB72919A9955200F0AF48 /* FileInput_tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2717E3D519A9655F00405AA0 /* FileInput_tests.swift */; };
 		277DB72E19AAA2E300F0AF48 /* FileInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 277DB72D19AAA2E300F0AF48 /* FileInput.swift */; };
 		277DB72F19AAA5D700F0AF48 /* FileInput.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2717E3C619A9655E00405AA0 /* FileInput.framework */; };
+		277DB73519AC2FC700F0AF48 /* LICENSE.txt in Resources */ = {isa = PBXBuildFile; fileRef = 277DB72A19AA77F400F0AF48 /* LICENSE.txt */; };
+		277DB73A19ACFD5600F0AF48 /* README.md in CopyFiles */ = {isa = PBXBuildFile; fileRef = 277DB72B19AA780300F0AF48 /* README.md */; };
+		277DB73C19ACFE8500F0AF48 /* long-lines.txt in Resources */ = {isa = PBXBuildFile; fileRef = 277DB73B19ACFE8500F0AF48 /* long-lines.txt */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -23,6 +26,19 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		277DB73919ACFD4B00F0AF48 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 7;
+			files = (
+				277DB73A19ACFD5600F0AF48 /* README.md in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		2717E3C619A9655E00405AA0 /* FileInput.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = FileInput.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2717E3CA19A9655E00405AA0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -34,6 +50,7 @@
 		277DB72B19AA780300F0AF48 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		277DB72C19AA9CAD00F0AF48 /* TODO.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = TODO.md; sourceTree = "<group>"; };
 		277DB72D19AAA2E300F0AF48 /* FileInput.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileInput.swift; sourceTree = "<group>"; };
+		277DB73B19ACFE8500F0AF48 /* long-lines.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "long-lines.txt"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,6 +108,7 @@
 			children = (
 				2717E3D519A9655F00405AA0 /* FileInput_tests.swift */,
 				2717E3D419A9655F00405AA0 /* Info.plist */,
+				277DB73B19ACFE8500F0AF48 /* long-lines.txt */,
 			);
 			path = Test;
 			sourceTree = "<group>";
@@ -134,7 +152,9 @@
 				277DB71C19A994FD00F0AF48 /* Sources */,
 				277DB71D19A994FD00F0AF48 /* Frameworks */,
 				277DB71E19A994FD00F0AF48 /* Resources */,
+				277DB73919ACFD4B00F0AF48 /* CopyFiles */,
 				277DB73419AAB16800F0AF48 /* ShellScript */,
+				27DD8FA919AFA49E008F925F /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -193,6 +213,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				277DB73C19ACFE8500F0AF48 /* long-lines.txt in Resources */,
+				277DB73519AC2FC700F0AF48 /* LICENSE.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -211,6 +233,19 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = "$(DT_TOOLCHAIN_DIR)/usr/bin/swift -F $(CONFIGURATION_BUILD_DIR)";
 			shellScript = "import FileInput\nprintln( \"testing: Can import FileInput module.\" )\nexit( EXIT_SUCCESS )";
+		};
+		27DD8FA919AFA49E008F925F /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = "$(DT_TOOLCHAIN_DIR)/usr/bin/swift -F $(CONFIGURATION_BUILD_DIR)";
+			shellScript = "import FileInput\nprintln( \"testing: bad file path\" )\n\nfunc _assertTrue<T: BooleanType>(\n   condition: @autoclosure () -> T,\n   message: String\n) {\n    if ( !condition() )\n    {\n        println( \"failed \\(message)\" )\n        exit( EXIT_FAILURE )\n    }\n}\n\nlet badFilePath = \"foo\"\nvar badLines = FileInput( filePath: badFilePath )\n_assertTrue( badLines.nextLine() == nil, \"Bad FileInput should have no lines.\" )\n\nvar lineWasRetrieved = false\nfor line in FileInput( filePath: badFilePath ) {\n    lineWasRetrieved = true\n}\n_assertTrue( !lineWasRetrieved, \"Bad FileInput should not iterate.\" )\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
