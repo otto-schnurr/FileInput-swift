@@ -54,7 +54,7 @@ public class FileInput: SequenceType {
 
     private func openNextFile() {
         if let filePath = self.filePath {
-            self.lines = _FileLines.linesForFilename( filePath )
+            self.lines = _FileLines.linesForFilePath( filePath )
         }
     }
 }
@@ -63,7 +63,7 @@ public class FileInput: SequenceType {
 // MARK: - Private
 
 
-private let _stdinName = "-"
+private let _stdinPath = "-"
 
 private class _FileLines: SequenceType {
 
@@ -81,15 +81,15 @@ private class _FileLines: SequenceType {
         }
     }
     
-    class func linesForFilename( filename: String ) -> _FileLines? {
+    class func linesForFilePath( filePath: String ) -> _FileLines? {
         var lines: _FileLines? = nil
         
-        if filename == _stdinName {
+        if filePath == _stdinPath {
             lines = _FileLines( file: __stdinp )
         } else {
-            let file = fopen( filename, "r" )
+            let file = fopen( filePath, "r" )
             if file == nil  {
-                println( "can't open \(filename)" )
+                println( "can't open \(filePath)" )
             }
             else {
                 lines = _FileLines( file: file )
