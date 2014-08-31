@@ -155,6 +155,7 @@
 				277DB73919ACFD4B00F0AF48 /* CopyFiles */,
 				277DB73419AAB16800F0AF48 /* ShellScript */,
 				27DD8FA919AFA49E008F925F /* ShellScript */,
+				2716DC7A19B2590F00F480D7 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -221,6 +222,20 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		2716DC7A19B2590F00F480D7 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = "$(DT_TOOLCHAIN_DIR)/usr/bin/swift -F $(CONFIGURATION_BUILD_DIR)";
+			shellScript = "import FileInput\nprintln( \"testing: long lines\" )\n\nfunc _assertTrue<T: BooleanType>(\n    condition: @autoclosure () -> T,\n    message: String\n) {\n    if ( !condition() )\n    {\n        println( \"failed \\(message)\" )\n        exit( EXIT_FAILURE )\n    }\n}\n\nextension String {\n    var length: Int { return countElements( self ) }\n}\n\nlet sourceRoot = String.fromCString( getenv( \"SRCROOT\" ) )!\nvar lineCount = 0\nfor line in FileInput( filePath: sourceRoot + \"/Test/long-lines.txt\" ) {\n    switch lineCount++ {\n        case 0:\n            _assertTrue(\n                line.length == 68, \"Expected 68 characters. Got \\(line.length)\"\n            )\n        case 2:\n            _assertTrue(\n                line.length == 407, \"Expected 408 characters. Got \\(line.length)\"\n            )\n        case 4:\n            _assertTrue(\n                line.length == 1631, \"Expected 1631 characters. Got \\(line.length)\"\n            )\n        default:\n            _assertTrue(\n                line.length > 0, \"Expected some characters. Got none.\"\n            )\n    }\n}\n";
+			showEnvVarsInLog = 0;
+		};
 		277DB73419AAB16800F0AF48 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -233,6 +248,7 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = "$(DT_TOOLCHAIN_DIR)/usr/bin/swift -F $(CONFIGURATION_BUILD_DIR)";
 			shellScript = "import FileInput\nprintln( \"testing: Can import FileInput module.\" )\nexit( EXIT_SUCCESS )";
+			showEnvVarsInLog = 0;
 		};
 		27DD8FA919AFA49E008F925F /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -246,6 +262,7 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = "$(DT_TOOLCHAIN_DIR)/usr/bin/swift -F $(CONFIGURATION_BUILD_DIR)";
 			shellScript = "import FileInput\nprintln( \"testing: bad file path\" )\n\nfunc _assertTrue<T: BooleanType>(\n   condition: @autoclosure () -> T,\n   message: String\n) {\n    if ( !condition() )\n    {\n        println( \"failed \\(message)\" )\n        exit( EXIT_FAILURE )\n    }\n}\n\nlet badFilePath = \"foo\"\nvar badLines = FileInput( filePath: badFilePath )\n_assertTrue( badLines.nextLine() == nil, \"Bad FileInput should have no lines.\" )\n\nvar lineWasRetrieved = false\nfor line in FileInput( filePath: badFilePath ) {\n    lineWasRetrieved = true\n}\n_assertTrue( !lineWasRetrieved, \"Bad FileInput should not iterate.\" )\n";
+			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
 

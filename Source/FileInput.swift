@@ -9,6 +9,27 @@
 //     http://opensource.org/licenses/MIT
 //
 
+public func input() -> FileInput {
+	var arguments = [String]()
+
+	for index in 0 ..< Int( C_ARGC ) {
+        switch index {
+            case 0: continue
+            default:
+                if let argument = String.fromCString( C_ARGV[index] ) {
+                    arguments.append( argument )
+                }
+        }
+	}
+
+	let filePaths = [String]( arguments.count > 0 ? arguments : ["-"] )
+	return FileInput( filePaths: filePaths )
+}
+
+
+// MARK: -
+
+
 public typealias LineOfText = String
 
 public class FileInput: SequenceType {
@@ -48,7 +69,7 @@ public class FileInput: SequenceType {
         return result
     }
 
-    // MARK: - Private
+    // MARK: Private
     private var filePaths: [String]
     private var lines: _FileLines? = nil
 

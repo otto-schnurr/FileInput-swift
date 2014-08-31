@@ -1,11 +1,6 @@
 Todo
 ====
 
-### Implement `input()`
-- Add current code for `input()`.
-- verify: Test argv arguments for `input()`.
-- verify: Duplicate remaining logic tests in scripts.
-
 ### README Documentation
 - Track down FileInput doc from Python.
 - section: Usage

@@ -32,6 +32,10 @@ private func _longLineFilePath() -> String {
     return classBundle.pathForResource( "long-lines", ofType: "txt" )
 }
 
+
+// MARK: -
+
+
 extension String {
     var length: Int { return countElements( self ) }
 }
@@ -121,4 +125,7 @@ class FileInput_tests: XCTestCase {
         XCTAssertGreaterThan( lineCount, 0, "Failed to parse any long lines." )
     }
     
+    func test_defaultArgvInput_usesStandardInput() {
+        XCTAssertEqual( input().filePath!, "-", "" )
+    }
 }
