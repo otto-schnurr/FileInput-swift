@@ -11,15 +11,16 @@ The interface is [borrowed from python](https://docs.python.org/2/library/filein
 	#!/usr/bin/xcrun swift -F <path-to-FileInput.framework>
     import FileInput
     for line in input() {
-    	// Newline characters are not removed.
-    	print( line )
+    	process( line )
     }
 
-Input file names can be specified as command line arguments. Otherwise, standard input is used.
+Input files can be specified using command line arguments.
+Otherwise, standard input is used.
 
 	var lines = input()
     for line in lines {
-    	print( "\(lines.filePath): \(line)" )
+    	// Newline characters are not removed from line.
+    	print( "\(lines.filePath!): \(line)" )
     }
 
 
@@ -28,8 +29,8 @@ Input file names can be specified as command line arguments. Otherwise, standard
 Requires Xcode 6 beta 5 or later.
 
 Until Xcode 6 is out of beta, the following is a convenient short cut
-to have in your `.bashrc`.  Typing `sw` will point your terminal to
-the beta without having to switch the rest of your Mac off of Xcode 5.
+to have in your `.bashrc`.  Typing `sw` points your terminal to the
+beta without having to switch the rest of your Mac off of Xcode 5.
 
     function sw()
     {
@@ -46,24 +47,26 @@ the beta without having to switch the rest of your Mac off of Xcode 5.
     % xcodebuild
     ...
 
-Then move `./build/Release/FileInput.framework` to a convenient path
+Move `./build/Release/FileInput.framework` to a convenient path
 for your Swift scripts to reference.
 
 *important:* If you plan to ship this framework in a binary, [Apple
 recommends recompiling Swift frameworks with the same version of Xcode
-as your binary](https://developer.apple.com/swift/blog/?id=2). You can
-add `FileInput` as a Target Dependency to your Xcode project to
-achieve this.
+as your binary](https://developer.apple.com/swift/blog/?id=2).
 
 
 ### Motivation
 
 My hope is for this framework to eventually become redundant and
-obsolete. The makers of Swift should come up with a convenient way to
-pump lines of text into scripts.
+obsolete.
 
-As of Xcode 6 beta 5, no such facility exists outside of C or Objective-C
-API. Until one does, this framework is offered as an alternative.
+The makers of Swift could come up with an elegant way to
+pump lines of text into scripts. `println()` with string interpolation
+is an example of they handled this issue for standard output.
+
+As of Xcode 6 beta 5, no text input facility exists outside of C or
+Objective-C API. Until that changes, this framework is offered as an
+alternative.
 
 
 ### License
