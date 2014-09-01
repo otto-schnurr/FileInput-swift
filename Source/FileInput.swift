@@ -9,6 +9,11 @@
 //     http://opensource.org/licenses/MIT
 //
 
+/// :returns: A FileInput sequence to iterate over lines of all files
+///           listed in command line arguments. If that list is empty 
+///           then standard input is used.
+///
+///           A file path of "-" is replaced with standard input.
 public func input() -> FileInput {
 	var arguments = [String]()
 
@@ -30,8 +35,11 @@ public func input() -> FileInput {
 // MARK: -
 
 
+/// A collection of characters typically ending with a newline.
+/// The last line of a file might not contain a newline.
 public typealias LineOfText = String
 
+/// A sequence that vends LineOfText objects.
 public class FileInput: SequenceType {
 
     public typealias Generator = GeneratorOf<LineOfText>
@@ -40,23 +48,30 @@ public class FileInput: SequenceType {
         return Generator { return self.nextLine() }
     }
     
+    /// Constructs a sequence to iterate lines of standrd input.
     convenience public init() {
         self.init( filePath: "-" )
     }
     
+    /// Constructs a sequence to iterate lines of a file.
+    /// A filePath of "-" is replaced with standard input.
     convenience public init( filePath: String ) {
         self.init( filePaths: [filePath] )
     }
     
+    /// Constructs a sequence to iterate lines over a collection of files.
+    /// Each filePath of "-" is replaced with standard input.
     public init( filePaths: [String] ) {
         self.filePaths = filePaths
         self.openNextFile()
     }
 
+    /// The file used in the last call to nextLine().
     public var filePath: String? {
         return filePaths.count > 0 ? filePaths[0] : nil
     }
     
+    /// Newline characters that delimit lines are not removed.
     public func nextLine() -> LineOfText? {
         var result: LineOfText? = self.lines?.nextLine()
         
