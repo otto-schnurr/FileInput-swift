@@ -58,11 +58,9 @@ as your binary](https://developer.apple.com/swift/blog/?id=2).
 ### Motivation
 
 My hope is for this framework to eventually become redundant and
-obsolete.
-
-The makers of Swift could come up with an elegant way to
+obsolete. The makers of Swift could come up with an elegant way to
 pump lines of text into scripts. `println()` with string interpolation
-is an example of how they handled this issue for standard output.
+shows how they handled this issue for standard output.
 
 As of Xcode 6 beta 5, no text input facility exists outside of C or
 Objective-C API. Until that changes, this framework is offered as an

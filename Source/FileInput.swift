@@ -66,7 +66,7 @@ public class FileInput: SequenceType {
         self.openNextFile()
     }
 
-    /// The file used in the last call to nextLine().
+    /// The file used in the previous call to nextLine().
     public var filePath: String? {
         return filePaths.count > 0 ? filePaths[0] : nil
     }
