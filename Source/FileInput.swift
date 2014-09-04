@@ -17,18 +17,18 @@
 public func input() -> FileInput {
 	var arguments = [String]()
 
-	for index in 0 ..< Int( C_ARGC ) {
+	for index in 0 ..< Int(C_ARGC) {
         switch index {
             case 0: continue
             default:
-                if let argument = String.fromCString( C_ARGV[index] ) {
-                    arguments.append( argument )
+                if let argument = String.fromCString(C_ARGV[index]) {
+                    arguments.append(argument)
                 }
         }
 	}
 
-	let filePaths = [String]( arguments.count > 0 ? arguments : ["-"] )
-	return FileInput( filePaths: filePaths )
+	let filePaths = [String](arguments.count > 0 ? arguments : ["-"])
+	return FileInput(filePaths: filePaths)
 }
 
 
@@ -50,18 +50,18 @@ public class FileInput: SequenceType {
     
     /// Constructs a sequence to iterate lines of standrd input.
     convenience public init() {
-        self.init( filePath: "-" )
+        self.init(filePath: "-")
     }
     
     /// Constructs a sequence to iterate lines of a file.
     /// A filePath of "-" is replaced with standard input.
-    convenience public init( filePath: String ) {
-        self.init( filePaths: [filePath] )
+    convenience public init(filePath: String) {
+        self.init(filePaths: [filePath])
     }
     
     /// Constructs a sequence to iterate lines over a collection of files.
     /// Each filePath of "-" is replaced with standard input.
-    public init( filePaths: [String] ) {
+    public init(filePaths: [String]) {
         self.filePaths = filePaths
         self.openNextFile()
     }
@@ -76,7 +76,7 @@ public class FileInput: SequenceType {
         var result: LineOfText? = self.lines?.nextLine()
         
         while result == nil && self.filePath != nil {
-            filePaths.removeAtIndex( 0 )
+            filePaths.removeAtIndex(0)
             self.openNextFile()
             result = self.lines?.nextLine()
         }
@@ -90,7 +90,7 @@ public class FileInput: SequenceType {
 
     private func openNextFile() {
         if let filePath = self.filePath {
-            self.lines = _FileLines.linesForFilePath( filePath )
+            self.lines = _FileLines.linesForFilePath(filePath)
         }
     }
 }
@@ -104,31 +104,31 @@ private let _stdinPath = "-"
 private class _FileLines: SequenceType {
 
     typealias Generator = GeneratorOf<LineOfText>
-    var file: UnsafeMutablePointer<FILE>
-    var charBuffer = [CChar]( count: 512, repeatedValue: 0 )
+    let file: UnsafeMutablePointer<FILE>
+    var charBuffer = [CChar](count: 512, repeatedValue: 0)
     
-    init( file: UnsafeMutablePointer<FILE> ) {
+    init(file: UnsafeMutablePointer<FILE>) {
         self.file = file
     }
     
     deinit {
         if file != nil {
-            fclose( file )
+            fclose(file)
         }
     }
     
-    class func linesForFilePath( filePath: String ) -> _FileLines? {
+    class func linesForFilePath(filePath: String) -> _FileLines? {
         var lines: _FileLines? = nil
         
         if filePath == _stdinPath {
-            lines = _FileLines( file: __stdinp )
+            lines = _FileLines(file: __stdinp)
         } else {
-            let file = fopen( filePath, "r" )
+            let file = fopen(filePath, "r")
             if file == nil  {
-                println( "can't open \(filePath)" )
+                println("can't open \(filePath)")
             }
             else {
-                lines = _FileLines( file: file )
+                lines = _FileLines(file: file)
             }
         }
         
@@ -141,8 +141,8 @@ private class _FileLines: SequenceType {
         var result: String? = nil;
     
         if file != nil {
-            if fgets( &charBuffer, Int32( charBuffer.count ), file ) != nil {
-                result = String.fromCString( charBuffer )
+            if fgets(&charBuffer, Int32(charBuffer.count), file) != nil {
+                result = String.fromCString(charBuffer)
             }
         }
         
@@ -155,7 +155,7 @@ private class _FileLines: SequenceType {
         while let nextChunk = self.nextChunk() {
             line += nextChunk
             
-            if line.hasSuffix( "\n" ) {
+            if line.hasSuffix("\n") {
                 break
             }
         }

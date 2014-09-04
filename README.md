@@ -11,17 +11,10 @@ The interface is [borrowed from python](https://docs.python.org/2/library/filein
 	#!/usr/bin/xcrun swift -F <path-to-FileInput.framework>
     import FileInput
     for line in input() {
-    	process( line )
+    	process(line)
     }
 
-Input files can be specified using command line arguments.
-Otherwise, standard input is used.
-
-	var lines = input()
-    for line in lines {
-    	// Newline delimiters are not removed from line.
-    	print( "\(lines.filePath!): \(line)" )
-    }
+More documentation [here](../../wiki).
 
 
 ### Dependencies

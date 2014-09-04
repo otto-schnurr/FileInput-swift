@@ -18,18 +18,18 @@ private func _badFilePath() -> String {
 }
 
 private func _licenseFilePath() -> String {
-    let classBundle = NSBundle( forClass: FileInput_tests.self )
-    return classBundle.pathForResource( "LICENSE", ofType: "txt" )
+    let classBundle = NSBundle(forClass: FileInput_tests.self)
+    return classBundle.pathForResource("LICENSE", ofType: "txt")
 }
 
 private func _readmeFilePath() -> String {
-    let classBundle = NSBundle( forClass: FileInput_tests.self )
-    return classBundle.pathForResource( "README", ofType: "md" )
+    let classBundle = NSBundle(forClass: FileInput_tests.self)
+    return classBundle.pathForResource("README", ofType: "md")
 }
 
 private func _longLineFilePath() -> String {
-    let classBundle = NSBundle( forClass: FileInput_tests.self )
-    return classBundle.pathForResource( "long-lines", ofType: "txt" )
+    let classBundle = NSBundle(forClass: FileInput_tests.self)
+    return classBundle.pathForResource("long-lines", ofType: "txt")
 }
 
 
@@ -37,7 +37,7 @@ private func _longLineFilePath() -> String {
 
 
 extension String {
-    var length: Int { return countElements( self ) }
+    var length: Int { return countElements(self) }
 }
 
 
@@ -47,33 +47,33 @@ extension String {
 class FileInput_tests: XCTestCase {
 
     func test_defaultFileInput_usesStandardInput() {
-        XCTAssertEqual( FileInput().filePath!, "-", "" )
+        XCTAssertEqual(FileInput().filePath!, "-", "")
     }
     
     func test_badFileInput_returnsNoLines() {
-        var lines = FileInput( filePath: _badFilePath() )
-        XCTAssertNil( lines.nextLine(), "" )
+        let lines = FileInput(filePath: _badFilePath())
+        XCTAssertNil(lines.nextLine(), "")
     }
     
     func test_badFileInput_iteratesNoLines() {
         var lineWasRetrieved = false
-        for line in FileInput( filePath: _badFilePath() ) {
+        for line in FileInput(filePath: _badFilePath()) {
             lineWasRetrieved = true
         }
-        XCTAssertFalse( lineWasRetrieved, "" )
+        XCTAssertFalse(lineWasRetrieved, "")
     }
     
     func test_fileInput_returnsLines() {
-        var lines = FileInput( filePath: _licenseFilePath() )
-        XCTAssertNotNil( lines.nextLine(), "" )
+        let lines = FileInput(filePath: _licenseFilePath())
+        XCTAssertNotNil(lines.nextLine(), "")
     }
     
     func test_fileInput_iteratesLines() {
         var lineWasRetrieved = false
-        for line in FileInput( filePath: _licenseFilePath() ) {
+        for line in FileInput(filePath: _licenseFilePath()) {
             lineWasRetrieved = true
         }
-        XCTAssertTrue( lineWasRetrieved, "" )
+        XCTAssertTrue(lineWasRetrieved, "")
     }
     
     func test_fileInput_canIterateTwoFiles() {
@@ -83,49 +83,49 @@ class FileInput_tests: XCTestCase {
 
         var licenseLineCount = 0
         var readmeLineCount = 0
-        var lines = FileInput( filePaths: filePaths )
+        let lines = FileInput(filePaths: filePaths)
         
         for line in lines {
             switch lines.filePath! {
                 case licensePath:
                     switch licenseLineCount++ {
-                        case 0: XCTAssertEqual( line, "The MIT License (MIT)\n", "" )
-                        case 1: XCTAssertEqual( line, "\n", "" )
-                        case 2: XCTAssertEqual( line, "Copyright (c) 2014 Otto Schnurr\n", "" )
-                        default: XCTAssertNotNil( line, "" )
+                        case 0: XCTAssertEqual(line, "The MIT License (MIT)\n", "")
+                        case 1: XCTAssertEqual(line, "\n", "")
+                        case 2: XCTAssertEqual(line, "Copyright (c) 2014 Otto Schnurr\n", "")
+                        default: XCTAssertNotNil(line, "")
                     }
                 case readmePath:
                     switch readmeLineCount++ {
-                        case 0: XCTAssertEqual( line, "FileInput\n", "" )
-                        case 1: XCTAssertEqual( line, "=========\n", "" )
-                        case 2: XCTAssertEqual( line, "\n", "" )
-                        case 3: XCTAssertEqual( line, "Pump lines of text into Swift scripts.\n", "" )
-                        default: XCTAssertNotNil( line, "" )
+                        case 0: XCTAssertEqual(line, "FileInput\n", "")
+                        case 1: XCTAssertEqual(line, "=========\n", "")
+                        case 2: XCTAssertEqual(line, "\n", "")
+                        case 3: XCTAssertEqual(line, "Pump lines of text into Swift scripts.\n", "")
+                        default: XCTAssertNotNil(line, "")
                     }
                 default:
-                    XCTFail( "Unknown file path." )
+                    XCTFail("Unknown file path.")
             }
         }
         
-        XCTAssertGreaterThan( licenseLineCount, 0, "Failed to parse LICENSE." )
-        XCTAssertGreaterThan( readmeLineCount, 0, "Failed to parse README." )
+        XCTAssertGreaterThan(licenseLineCount, 0, "Failed to parse LICENSE.")
+        XCTAssertGreaterThan(readmeLineCount, 0, "Failed to parse README.")
     }
     
     func test_fileInput_preservesLongLines() {
         var lineCount = 0
-        for line in FileInput( filePath: _longLineFilePath() ) {
+        for line in FileInput(filePath: _longLineFilePath()) {
             switch lineCount++ {
-                case 0: XCTAssertEqual( line.length, 68, "" )
-                case 2: XCTAssertEqual( line.length, 407, "" )
-                case 4: XCTAssertEqual( line.length, 1631, "" )
-                default: XCTAssertGreaterThan( line.length, 0, "" )
+                case 0: XCTAssertEqual(line.length, 68, "")
+                case 2: XCTAssertEqual(line.length, 407, "")
+                case 4: XCTAssertEqual(line.length, 1631, "")
+                default: XCTAssertGreaterThan(line.length, 0, "")
             }
         }
         
-        XCTAssertGreaterThan( lineCount, 0, "Failed to parse any long lines." )
+        XCTAssertGreaterThan(lineCount, 0, "Failed to parse any long lines.")
     }
     
     func test_defaultArgvInput_usesStandardInput() {
-        XCTAssertEqual( input().filePath!, "-", "" )
+        XCTAssertEqual(input().filePath!, "-", "")
     }
 }
