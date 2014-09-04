@@ -51,7 +51,7 @@ class FileInput_tests: XCTestCase {
     }
     
     func test_badFileInput_returnsNoLines() {
-        var lines = FileInput(filePath: _badFilePath())
+        let lines = FileInput(filePath: _badFilePath())
         XCTAssertNil(lines.nextLine(), "")
     }
     
@@ -64,7 +64,7 @@ class FileInput_tests: XCTestCase {
     }
     
     func test_fileInput_returnsLines() {
-        var lines = FileInput(filePath: _licenseFilePath())
+        let lines = FileInput(filePath: _licenseFilePath())
         XCTAssertNotNil(lines.nextLine(), "")
     }
     
@@ -83,7 +83,7 @@ class FileInput_tests: XCTestCase {
 
         var licenseLineCount = 0
         var readmeLineCount = 0
-        var lines = FileInput(filePaths: filePaths)
+        let lines = FileInput(filePaths: filePaths)
         
         for line in lines {
             switch lines.filePath! {

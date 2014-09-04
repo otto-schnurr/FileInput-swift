@@ -104,7 +104,7 @@ private let _stdinPath = "-"
 private class _FileLines: SequenceType {
 
     typealias Generator = GeneratorOf<LineOfText>
-    var file: UnsafeMutablePointer<FILE>
+    let file: UnsafeMutablePointer<FILE>
     var charBuffer = [CChar](count: 512, repeatedValue: 0)
     
     init(file: UnsafeMutablePointer<FILE>) {

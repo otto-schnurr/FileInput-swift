@@ -261,7 +261,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = "$(DT_TOOLCHAIN_DIR)/usr/bin/swift -F $(CONFIGURATION_BUILD_DIR)";
-			shellScript = "import FileInput\nprintln(\"testing: bad file path\")\n\nfunc _assertTrue<T: BooleanType>(\n   condition: @autoclosure () -> T,\n   message: String\n) {\n    if !condition() {\n        println(\"failed \\(message)\")\n        exit(EXIT_FAILURE)\n    }\n}\n\nlet badFilePath = \"foo\"\nvar badLines = FileInput(filePath: badFilePath)\n_assertTrue(badLines.nextLine() == nil, \"Bad FileInput should have no lines.\")\n\nvar lineWasRetrieved = false\nfor line in FileInput(filePath: badFilePath) {\n    lineWasRetrieved = true\n}\n_assertTrue(!lineWasRetrieved, \"Bad FileInput should not iterate.\")";
+			shellScript = "import FileInput\nprintln(\"testing: bad file path\")\n\nfunc _assertTrue<T: BooleanType>(\n   condition: @autoclosure () -> T,\n   message: String\n) {\n    if !condition() {\n        println(\"failed \\(message)\")\n        exit(EXIT_FAILURE)\n    }\n}\n\nlet badFilePath = \"foo\"\nlet badLines = FileInput(filePath: badFilePath)\n_assertTrue(badLines.nextLine() == nil, \"Bad FileInput should have no lines.\")\n\nvar lineWasRetrieved = false\nfor line in FileInput(filePath: badFilePath) {\n    lineWasRetrieved = true\n}\n_assertTrue(!lineWasRetrieved, \"Bad FileInput should not iterate.\")";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
