@@ -19,17 +19,17 @@ private func _badFilePath() -> String {
 
 private func _licenseFilePath() -> String {
     let classBundle = NSBundle(forClass: FileInput_tests.self)
-    return classBundle.pathForResource("LICENSE", ofType: "txt")
+    return classBundle.pathForResource("LICENSE", ofType: "txt")!
 }
 
 private func _readmeFilePath() -> String {
     let classBundle = NSBundle(forClass: FileInput_tests.self)
-    return classBundle.pathForResource("README", ofType: "md")
+    return classBundle.pathForResource("README", ofType: "md")!
 }
 
 private func _longLineFilePath() -> String {
     let classBundle = NSBundle(forClass: FileInput_tests.self)
-    return classBundle.pathForResource("long-lines", ofType: "txt")
+    return classBundle.pathForResource("long-lines", ofType: "txt")!
 }
 
 

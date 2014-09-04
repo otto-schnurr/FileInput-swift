@@ -9,6 +9,8 @@
 //     http://opensource.org/licenses/MIT
 //
 
+import Darwin
+
 /// :returns: A FileInput sequence to iterate over lines of all files
 ///           listed in command line arguments. If that list is empty 
 ///           then standard input is used.
