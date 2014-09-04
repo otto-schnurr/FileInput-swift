@@ -2,8 +2,6 @@ Todo
 ====
 
 ### `FileInput` Documentation
-- Reference wiki documentation from README.
-- Adopt Apple's style for spaces surrounding argument lists.
 - Revisit constant FileInput instances. Should be able to use them or should FileInput be a struct? (Is FileInput a struct anyway since it derives from a struct?)
 
 ### Follow Up

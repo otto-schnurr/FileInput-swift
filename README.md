@@ -11,7 +11,7 @@ The interface is [borrowed from python](https://docs.python.org/2/library/filein
 	#!/usr/bin/xcrun swift -F <path-to-FileInput.framework>
     import FileInput
     for line in input() {
-    	process( line )
+    	process(line)
     }
 
 More documentation [here](../../wiki).
