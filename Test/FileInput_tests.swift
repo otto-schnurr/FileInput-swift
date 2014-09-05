@@ -32,6 +32,11 @@ private func _longLineFilePath() -> String {
     return classBundle.pathForResource("long-lines", ofType: "txt")!
 }
 
+private func _unicodeFilePath() -> String {
+    let classBundle = NSBundle(forClass: FileInput_tests.self)
+    return classBundle.pathForResource("unicode", ofType: "txt")!
+}
+
 
 // MARK: -
 
@@ -127,5 +132,11 @@ class FileInput_tests: XCTestCase {
     
     func test_defaultArgvInput_usesStandardInput() {
         XCTAssertEqual(input().filePath!, "-", "")
+    }
+    
+    func test_unicodeInput_preservesUnicode() {
+        let lines = FileInput(filePath: _unicodeFilePath())
+        XCTAssertEqual(lines.nextLine()!, "🐶\n", "")
+        XCTAssertEqual(lines.nextLine()!, "😄👍", "")
     }
 }
