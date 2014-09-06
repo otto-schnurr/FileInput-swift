@@ -33,6 +33,26 @@ public func input() -> FileInput {
 	return FileInput(filePaths: filePaths)
 }
 
+extension String {
+    public func removeTrailingSpace() -> String {
+        let characters = self.unicodeScalars
+        var end = characters.endIndex
+        
+        while characters.startIndex < end {
+            let previousIndex = end.predecessor()
+            let wc = wint_t(characters[previousIndex].value)
+            
+            if iswspace(wc) == 0 {
+                break
+            }
+            
+            end = previousIndex
+        }
+        
+        return String(characters[characters.startIndex..<end])
+    }
+}
+
 
 // MARK: -
 
