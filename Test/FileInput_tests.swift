@@ -139,4 +139,26 @@ class FileInput_tests: XCTestCase {
         XCTAssertEqual(lines.nextLine()!, "🐶\n", "")
         XCTAssertEqual(lines.nextLine()!, "😄👍", "")
     }
+    
+    func test_removingTrailingSpace() {
+        XCTAssertEqual("".removeTrailingSpace(), "", "")
+        XCTAssertEqual("\n".removeTrailingSpace(), "", "")
+        XCTAssertEqual("   \t\r\n".removeTrailingSpace(), "", "")
+        
+        XCTAssertEqual("foo".removeTrailingSpace(), "foo", "")
+        XCTAssertEqual("foo\n".removeTrailingSpace(), "foo", "")
+        XCTAssertEqual("foo   \t\r\n".removeTrailingSpace(), "foo", "")
+
+        XCTAssertEqual("\nfoo".removeTrailingSpace(), "\nfoo", "")
+        XCTAssertEqual("\nfoo\n".removeTrailingSpace(), "\nfoo", "")
+        XCTAssertEqual("\nfoo   \t\r\n".removeTrailingSpace(), "\nfoo", "")
+        
+        XCTAssertEqual("🐶".removeTrailingSpace(), "🐶", "")
+        XCTAssertEqual("🐶\n".removeTrailingSpace(), "🐶", "")
+        XCTAssertEqual("🐶   \t\r\n".removeTrailingSpace(), "🐶", "")
+        
+        XCTAssertEqual("\n🐶".removeTrailingSpace(), "\n🐶", "")
+        XCTAssertEqual("\n🐶\n".removeTrailingSpace(), "\n🐶", "")
+        XCTAssertEqual("\n🐶   \t\r\n".removeTrailingSpace(), "\n🐶", "")
+    }
 }
