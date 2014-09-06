@@ -1,7 +1,7 @@
 FileInput
 =========
 
-Pump lines of text into Swift scripts.
+Pipe lines of text into Swift scripts.
 
 
 ### Usage
