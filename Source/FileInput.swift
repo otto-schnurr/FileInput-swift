@@ -27,7 +27,7 @@ public func input() -> FileInput {
                     arguments.append(argument)
                 }
         }
-	}
+    }
 
     let filePaths = [String](arguments.count > 0 ? arguments : ["-"])
     return FileInput(filePaths: filePaths)
