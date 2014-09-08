@@ -17,9 +17,9 @@ import Darwin
 ///
 ///           A file path of "-" is replaced with standard input.
 public func input() -> FileInput {
-	var arguments = [String]()
+    var arguments = [String]()
 
-	for index in 0 ..< Int(C_ARGC) {
+    for index in 0 ..< Int(C_ARGC) {
         switch index {
             case 0: continue
             default:
@@ -29,8 +29,8 @@ public func input() -> FileInput {
         }
 	}
 
-	let filePaths = [String](arguments.count > 0 ? arguments : ["-"])
-	return FileInput(filePaths: filePaths)
+    let filePaths = [String](arguments.count > 0 ? arguments : ["-"])
+    return FileInput(filePaths: filePaths)
 }
 
 
