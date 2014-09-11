@@ -102,6 +102,7 @@ public class FileInput: SequenceType {
 
 
 extension String {
+
     /// :returns: A copy of this string with no white space at the end.
     public func removeTrailingSpace() -> String {
         let characters = self.unicodeScalars
@@ -119,6 +120,12 @@ extension String {
         }
         
         return String(characters[characters.startIndex..<end])
+    }
+    
+    /// :returns: An index of the first white space character in this string.
+    public func findFirstSpace() -> String.Index? {
+        // !!!: implement me
+        return nil
     }
 }
 
