@@ -2,8 +2,7 @@ Todo
 ====
 
 ### String Extensions
-- Document preliminary `findFirstSpace()`.
-- Implement, test `findFirstSpace()`.
+- Factor private `UnicodeScalar` extension: `isSpace()`
 - Document preliminary `removeLeadingSpace()`.
 - Implement, test `removeLeadingSpace()`.
 - Update wiki documentation.

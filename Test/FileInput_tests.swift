@@ -140,6 +140,10 @@ class FileInput_tests: XCTestCase {
         XCTAssertEqual(lines.nextLine()!, "😄👍", "")
     }
     
+    
+    // MARK: -
+    
+    
     func test_removingTrailingSpace() {
         XCTAssertEqual("".removeTrailingSpace(), "", "")
         XCTAssertEqual("\n".removeTrailingSpace(), "", "")
@@ -160,5 +164,62 @@ class FileInput_tests: XCTestCase {
         XCTAssertEqual("\n🐶".removeTrailingSpace(), "\n🐶", "")
         XCTAssertEqual("\n🐶\n".removeTrailingSpace(), "\n🐶", "")
         XCTAssertEqual("\n🐶   \t\r\n".removeTrailingSpace(), "\n🐶", "")
+    }
+    
+    
+    // MARK: -
+    
+    
+    func test_missingSpace_canNotBeFound() {
+        XCTAssertTrue("".findFirstSpace() == nil, "")
+        XCTAssertTrue("foo".findFirstSpace() == nil, "")
+        XCTAssertTrue("🐶".findFirstSpace() == nil, "")
+    }
+
+    func test_space_canBeFound() {
+        let newline = "\n"
+        let spaces = "   \t\r\n"
+        XCTAssertEqual(newline.findFirstSpace()!, newline.startIndex, "")
+        XCTAssertEqual(spaces.findFirstSpace()!, spaces.startIndex, "")
+    }
+    
+    func test_leadingSpace_canBeFound() {
+        let newlineFoo = "\nfoo"
+        let newlineDog = "\n🐶"
+        XCTAssertEqual(newlineFoo.findFirstSpace()!, newlineFoo.startIndex, "")
+        XCTAssertEqual(newlineDog.findFirstSpace()!, newlineDog.startIndex, "")
+        
+        let spaceFoo = "   \t\r\nfoo"
+        let spaceDog = "   \t\r\n🐶"
+        XCTAssertEqual(spaceFoo.findFirstSpace()!, spaceFoo.startIndex, "")
+        XCTAssertEqual(spaceDog.findFirstSpace()!, spaceDog.startIndex, "")
+    }
+    
+    func test_trailingSpace_canBeFound() {
+        let fooNewline = "foo\n"
+        let dogNewline = "🐶\n"
+        XCTAssertEqual(
+            fooNewline.findFirstSpace()!,
+            advance(fooNewline.startIndex, 3),
+            ""
+        )
+        XCTAssertEqual(
+            dogNewline.findFirstSpace()!,
+            advance(dogNewline.startIndex, 1),
+            ""
+        )
+        
+        let fooSpace = "foo   \t\r\n"
+        let dogSpace = "🐶   \t\r\n"
+        XCTAssertEqual(
+            fooSpace.findFirstSpace()!,
+            advance(fooSpace.startIndex, 3),
+            ""
+        )
+        XCTAssertEqual(
+            dogSpace.findFirstSpace()!,
+            advance(dogSpace.startIndex, 1),
+            ""
+        )
     }
 }

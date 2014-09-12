@@ -124,8 +124,19 @@ extension String {
     
     /// :returns: An index of the first white space character in this string.
     public func findFirstSpace() -> String.Index? {
-        // !!!: implement me
-        return nil
+        var result: String.Index? = nil
+        
+        for var index = self.startIndex; index < self.endIndex; index = index.successor() {
+            let unicode = UnicodeScalar.convertFromExtendedGraphemeClusterLiteral(String(self[index]))
+            let wc = wint_t(unicode.value)
+            
+            if iswspace(wc) != 0 {
+                result = index
+                break
+            }
+        }
+
+        return result
     }
 }
 
