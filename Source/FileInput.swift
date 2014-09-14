@@ -100,8 +100,13 @@ public class FileInput: SequenceType {
 
 // MARK: -
 
-
+2
 extension String {
+
+    /// :returns: A copy of this string with no white space at the beginning.
+    public func removeLeadingSpace() -> String {
+        return self
+    }
 
     /// :returns: A copy of this string with no white space at the end.
     public func removeTrailingSpace() -> String {

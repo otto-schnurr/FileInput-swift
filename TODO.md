@@ -2,7 +2,6 @@ Todo
 ====
 
 ### String Extensions
-- Factor private `UnicodeScalar` extension: `isSpace()`
 - Document preliminary `removeLeadingSpace()`.
 - Implement, test `removeLeadingSpace()`.
 - Update wiki documentation.

@@ -144,6 +144,10 @@ class FileInput_tests: XCTestCase {
     // MARK: -
     
     
+    func test_removingLeadingSpace() {
+        XCTAssertEqual("".removeLeadingSpace(), "", "")
+    }
+    
     func test_removingTrailingSpace() {
         XCTAssertEqual("".removeTrailingSpace(), "", "")
         XCTAssertEqual("\n".removeTrailingSpace(), "", "")
