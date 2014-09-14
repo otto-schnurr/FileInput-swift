@@ -110,10 +110,9 @@ extension String {
         
         while characters.startIndex < end {
             let previousIndex = end.predecessor()
-            let wc = wint_t(characters[previousIndex].value)
             
-            if iswspace(wc) == 0 {
-                break
+            if !characters[previousIndex].isSpace() {
+                break;
             }
             
             end = previousIndex
@@ -128,9 +127,8 @@ extension String {
         
         for var index = self.startIndex; index < self.endIndex; index = index.successor() {
             let unicode = UnicodeScalar.convertFromExtendedGraphemeClusterLiteral(String(self[index]))
-            let wc = wint_t(unicode.value)
             
-            if iswspace(wc) != 0 {
+            if unicode.isSpace() {
                 result = index
                 break
             }
@@ -206,5 +204,16 @@ private class _FileLines: SequenceType {
         }
         
         return line.isEmpty ? nil : line
+    }
+}
+
+
+// MARK: - Private
+
+
+extension UnicodeScalar {
+    private func isSpace() -> Bool {
+        let wCharacter = wint_t(self.value)
+        return iswspace(wCharacter) != 0
     }
 }
