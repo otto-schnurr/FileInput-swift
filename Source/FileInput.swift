@@ -100,12 +100,23 @@ public class FileInput: SequenceType {
 
 // MARK: -
 
-2
+
 extension String {
 
     /// :returns: A copy of this string with no white space at the beginning.
     public func removeLeadingSpace() -> String {
-        return self
+        let characters = self.unicodeScalars
+        var start = characters.startIndex
+        
+        while start < characters.endIndex {
+            if !characters[start].isSpace() {
+                break
+            }
+            
+            start = start.successor()
+        }
+        
+        return String(characters[start..<characters.endIndex])
     }
 
     /// :returns: A copy of this string with no white space at the end.
@@ -117,7 +128,7 @@ extension String {
             let previousIndex = end.predecessor()
             
             if !characters[previousIndex].isSpace() {
-                break;
+                break
             }
             
             end = previousIndex

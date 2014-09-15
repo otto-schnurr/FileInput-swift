@@ -146,6 +146,24 @@ class FileInput_tests: XCTestCase {
     
     func test_removingLeadingSpace() {
         XCTAssertEqual("".removeLeadingSpace(), "", "")
+        XCTAssertEqual("\n".removeLeadingSpace(), "", "")
+        XCTAssertEqual("   \t\r\n".removeLeadingSpace(), "", "")
+        
+        XCTAssertEqual("foo".removeLeadingSpace(), "foo", "")
+        XCTAssertEqual("\nfoo".removeLeadingSpace(), "foo", "")
+        XCTAssertEqual("   \t\r\nfoo".removeLeadingSpace(), "foo", "")
+
+        XCTAssertEqual("foo\n".removeLeadingSpace(), "foo\n", "")
+        XCTAssertEqual("\nfoo\n".removeLeadingSpace(), "foo\n", "")
+        XCTAssertEqual("   \t\r\nfoo\n".removeLeadingSpace(), "foo\n", "")
+        
+        XCTAssertEqual("🐶".removeLeadingSpace(), "🐶", "")
+        XCTAssertEqual("\n🐶".removeLeadingSpace(), "🐶", "")
+        XCTAssertEqual("   \t\r\n🐶".removeLeadingSpace(), "🐶", "")
+        
+        XCTAssertEqual("🐶\n".removeLeadingSpace(), "🐶\n", "")
+        XCTAssertEqual("\n🐶\n".removeLeadingSpace(), "🐶\n", "")
+        XCTAssertEqual("   \t\r\n🐶\n".removeLeadingSpace(), "🐶\n", "")
     }
     
     func test_removingTrailingSpace() {
