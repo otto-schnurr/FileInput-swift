@@ -102,6 +102,23 @@ public class FileInput: SequenceType {
 
 
 extension String {
+
+    /// :returns: A copy of this string with no white space at the beginning.
+    public func removeLeadingSpace() -> String {
+        let characters = self.unicodeScalars
+        var start = characters.startIndex
+        
+        while start < characters.endIndex {
+            if !characters[start].isSpace() {
+                break
+            }
+            
+            start = start.successor()
+        }
+        
+        return String(characters[start..<characters.endIndex])
+    }
+
     /// :returns: A copy of this string with no white space at the end.
     public func removeTrailingSpace() -> String {
         let characters = self.unicodeScalars
@@ -109,9 +126,8 @@ extension String {
         
         while characters.startIndex < end {
             let previousIndex = end.predecessor()
-            let wc = wint_t(characters[previousIndex].value)
             
-            if iswspace(wc) == 0 {
+            if !characters[previousIndex].isSpace() {
                 break
             }
             
@@ -119,6 +135,22 @@ extension String {
         }
         
         return String(characters[characters.startIndex..<end])
+    }
+    
+    /// :returns: An index of the first white space character in this string.
+    public func findFirstSpace() -> String.Index? {
+        var result: String.Index? = nil
+        
+        for var index = self.startIndex; index < self.endIndex; index = index.successor() {
+            let unicode = UnicodeScalar.convertFromExtendedGraphemeClusterLiteral(String(self[index]))
+            
+            if unicode.isSpace() {
+                result = index
+                break
+            }
+        }
+
+        return result
     }
 }
 
@@ -188,5 +220,16 @@ private class _FileLines: SequenceType {
         }
         
         return line.isEmpty ? nil : line
+    }
+}
+
+
+// MARK: - Private
+
+
+extension UnicodeScalar {
+    private func isSpace() -> Bool {
+        let wCharacter = wint_t(self.value)
+        return iswspace(wCharacter) != 0
     }
 }
