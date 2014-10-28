@@ -19,16 +19,7 @@ More documentation [here](../../wiki).
 
 ### Dependencies
 
-Requires Xcode 6 beta 7 or later.
-
-Until Xcode 6 is out of beta, the following is a convenient short cut
-to have in your `.bashrc`.  Typing `sw` points your terminal to the
-beta without having to switch the rest of your Mac off of Xcode 5.
-
-    function sw()
-    {
-       export DEVELOPER_DIR=/Applications/Xcode6-Beta7.app/Contents/Developer
-    }
+Requires Xcode 6.1 or later.
 
 
 ### Installation
@@ -36,7 +27,6 @@ beta without having to switch the rest of your Mac off of Xcode 5.
     % git clone git@github.com:otto-schnurr/FileInput-swift.git
     ...
     % cd FileInput-swift
-    % sw # see above
     % xcodebuild
     ...
 
@@ -55,7 +45,7 @@ obsolete. The makers of Swift could come up with an elegant way to
 pump lines of text into scripts. `println()` with string interpolation
 shows how they handled this issue for standard output.
 
-As of Xcode 6 beta 7, no text input facility exists outside of C or
+As of Xcode 6.1, no text input facility exists outside of C or
 Objective-C API. Until that changes, this framework is offered as an
 alternative.
 
