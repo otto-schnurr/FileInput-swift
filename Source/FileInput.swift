@@ -142,9 +142,7 @@ extension String {
         var result: String.Index? = nil
         
         for var index = self.startIndex; index < self.endIndex; index = index.successor() {
-            let unicode = UnicodeScalar.convertFromExtendedGraphemeClusterLiteral(String(self[index]))
-            
-            if unicode.isSpace() {
+            if self[index].isSpace() {
                 result = index
                 break
             }
@@ -226,6 +224,19 @@ private class _FileLines: SequenceType {
 
 // MARK: - Private
 
+
+extension Character {
+    private func isSpace() -> Bool {
+        let characterString = String(self)
+        for uCharacter in characterString.unicodeScalars {
+            if !uCharacter.isSpace() {
+                return false
+            }
+        }
+        
+        return true
+    }
+}
 
 extension UnicodeScalar {
     private func isSpace() -> Bool {
