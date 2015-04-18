@@ -42,7 +42,7 @@ private func _unicodeFilePath() -> String {
 
 
 extension String {
-    var length: Int { return countElements(self) }
+    var length: Int { return count(self) }
 }
 
 

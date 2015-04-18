@@ -19,11 +19,11 @@ import Darwin
 public func input() -> FileInput {
     var arguments = [String]()
 
-    for index in 0 ..< Int(C_ARGC) {
+    for index in 0 ..< Int(Process.argc) {
         switch index {
             case 0: continue
             default:
-                if let argument = String.fromCString(C_ARGV[index]) {
+                if let argument = String.fromCString(Process.unsafeArgv[index]) {
                     arguments.append(argument)
                 }
         }
