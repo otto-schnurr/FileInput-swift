@@ -1,14 +1,14 @@
 FileInput
 =========
 
-Pipe lines of text into Swift scripts.
+A pipe for streaming text from the command line into Swift scripts.
 
 
 ### Usage
 
 The interface is [borrowed from python](https://docs.python.org/2/library/fileinput.html).
 
-	#!/usr/bin/xcrun swift -F <path-to-FileInput.framework>
+	#!/usr/bin/swift -F <path-to-FileInput.framework>
     import FileInput
     for line in input() {
     	process(line)
@@ -19,7 +19,7 @@ More documentation [here](../../wiki).
 
 ### Dependencies
 
-Requires Xcode 6.1 or later.
+Requires Xcode 6.3 or later.
 
 
 ### Installation
@@ -43,9 +43,9 @@ as your binary](https://developer.apple.com/swift/blog/?id=2).
 My hope is for this framework to eventually become redundant and
 obsolete. The makers of Swift could come up with an elegant way to
 pump lines of text into scripts. `println()` with string interpolation
-shows how they handled this issue for standard output.
+shows how they handled this issue for output streams.
 
-As of Xcode 6.1, no text input facility exists outside of C or
+As of Xcode 6.3, no input text stream exists outside of C or
 Objective-C API. Until that changes, this framework is offered as an
 alternative.
 
