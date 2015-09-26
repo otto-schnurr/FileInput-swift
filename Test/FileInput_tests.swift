@@ -104,7 +104,7 @@ class FileInput_tests: XCTestCase {
                         case 0: XCTAssertEqual(line, "FileInput\n", "")
                         case 1: XCTAssertEqual(line, "=========\n", "")
                         case 2: XCTAssertEqual(line, "\n", "")
-                        case 3: XCTAssertEqual(line, "Pipe lines of text into Swift scripts.\n", "")
+                        case 3: XCTAssertEqual(line, "A pipe for streaming text from the command line into Swift scripts.\n", "")
                         default: XCTAssertNotNil(line, "")
                     }
                 default:
