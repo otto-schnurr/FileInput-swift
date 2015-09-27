@@ -11,11 +11,11 @@
 
 import Darwin
 
-/// - returns: A FileInput sequence to iterate over lines of all files
-///           listed in command line arguments. If that list is empty 
-///           then standard input is used.
+/// Creates a FileInput sequence to iterate over lines of all files listed
+/// in command line arguments. If that list is empty then standard input is
+/// used.
 ///
-///           A file path of "-" is replaced with standard input.
+/// A file path of "-" is replaced with standard input.
 public func input() -> FileInput {
     var arguments = [String]()
 
@@ -103,7 +103,7 @@ public class FileInput: SequenceType {
 
 extension String {
 
-    /// - returns: A copy of this string with no white space at the beginning.
+    /// Creates a copy of this string with no white space at the beginning.
     public func removeLeadingSpace() -> String {
         let characters = self.unicodeScalars
         var start = characters.startIndex
@@ -119,7 +119,7 @@ extension String {
         return String(characters[start..<characters.endIndex])
     }
 
-    /// - returns: A copy of this string with no white space at the end.
+    /// Creates a copy of this string with no white space at the end.
     public func removeTrailingSpace() -> String {
         let characters = self.unicodeScalars
         var end = characters.endIndex
