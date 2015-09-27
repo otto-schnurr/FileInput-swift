@@ -42,7 +42,7 @@ private func _unicodeFilePath() -> String {
 
 
 extension String {
-    var length: Int { return count(self) }
+    var length: Int { return self.characters.count }
 }
 
 
@@ -52,7 +52,7 @@ extension String {
 class FileInput_tests: XCTestCase {
 
     func test_defaultFileInput_usesStandardInput() {
-        XCTAssertEqual(FileInput().filePath!, "-", "")
+        XCTAssertEqual(FileInput.filePath!, "-", "")
     }
     
     func test_badFileInput_returnsNoLines() {
@@ -222,12 +222,12 @@ class FileInput_tests: XCTestCase {
         let dogNewline = "🐶\n"
         XCTAssertEqual(
             fooNewline.findFirstSpace()!,
-            advance(fooNewline.startIndex, 3),
+            fooNewline.startIndex.advancedBy(3),
             ""
         )
         XCTAssertEqual(
             dogNewline.findFirstSpace()!,
-            advance(dogNewline.startIndex, 1),
+            dogNewline.startIndex.advancedBy(1),
             ""
         )
         
@@ -235,12 +235,12 @@ class FileInput_tests: XCTestCase {
         let dogSpace = "🐶   \t\r\n"
         XCTAssertEqual(
             fooSpace.findFirstSpace()!,
-            advance(fooSpace.startIndex, 3),
+            fooSpace.startIndex.advancedBy(3),
             ""
         )
         XCTAssertEqual(
             dogSpace.findFirstSpace()!,
-            advance(dogSpace.startIndex, 1),
+            dogSpace.startIndex.advancedBy(1),
             ""
         )
     }

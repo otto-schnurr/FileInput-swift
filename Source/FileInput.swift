@@ -11,7 +11,7 @@
 
 import Darwin
 
-/// :returns: A FileInput sequence to iterate over lines of all files
+/// - returns: A FileInput sequence to iterate over lines of all files
 ///           listed in command line arguments. If that list is empty 
 ///           then standard input is used.
 ///
@@ -44,10 +44,10 @@ public typealias LineOfText = String
 /// A sequence that vends LineOfText objects.
 public class FileInput: SequenceType {
 
-    public typealias Generator = GeneratorOf<LineOfText>
+    public typealias Generator = AnyGenerator<LineOfText>
     
     public func generate() -> Generator {
-        return Generator { return self.nextLine() }
+        return anyGenerator { return self.nextLine() }
     }
     
     /// Constructs a sequence to iterate lines of standrd input.
@@ -103,7 +103,7 @@ public class FileInput: SequenceType {
 
 extension String {
 
-    /// :returns: A copy of this string with no white space at the beginning.
+    /// - returns: A copy of this string with no white space at the beginning.
     public func removeLeadingSpace() -> String {
         let characters = self.unicodeScalars
         var start = characters.startIndex
@@ -119,7 +119,7 @@ extension String {
         return String(characters[start..<characters.endIndex])
     }
 
-    /// :returns: A copy of this string with no white space at the end.
+    /// - returns: A copy of this string with no white space at the end.
     public func removeTrailingSpace() -> String {
         let characters = self.unicodeScalars
         var end = characters.endIndex
@@ -137,7 +137,7 @@ extension String {
         return String(characters[characters.startIndex..<end])
     }
     
-    /// :returns: An index of the first white space character in this string.
+    /// - returns: An index of the first white space character in this string.
     public func findFirstSpace() -> String.Index? {
         var result: String.Index? = nil
         
@@ -160,7 +160,7 @@ private let _stdinPath = "-"
 
 private class _FileLines: SequenceType {
 
-    typealias Generator = GeneratorOf<LineOfText>
+    typealias Generator = AnyGenerator<LineOfText>
     let file: UnsafeMutablePointer<FILE>
     var charBuffer = [CChar](count: 512, repeatedValue: 0)
     
@@ -182,7 +182,7 @@ private class _FileLines: SequenceType {
         } else {
             let file = fopen(filePath, "r")
             if file == nil  {
-                println("can't open \(filePath)")
+                print("can't open \(filePath)")
             }
             else {
                 lines = _FileLines(file: file)
@@ -192,7 +192,7 @@ private class _FileLines: SequenceType {
         return lines
     }
     
-    func generate() -> Generator { return Generator { self.nextLine() } }
+    func generate() -> Generator { return anyGenerator { self.nextLine() } }
     
     func nextChunk() -> String? {
         var result: String? = nil;
