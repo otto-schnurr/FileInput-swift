@@ -42,7 +42,7 @@ private func _unicodeFilePath() -> String {
 
 
 extension String {
-    var length: Int { return count(self) }
+    var length: Int { return self.characters.count }
 }
 
 
@@ -62,7 +62,7 @@ class FileInput_tests: XCTestCase {
     
     func test_badFileInput_iteratesNoLines() {
         var lineWasRetrieved = false
-        for line in FileInput(filePath: _badFilePath()) {
+        for _ in FileInput(filePath: _badFilePath()) {
             lineWasRetrieved = true
         }
         XCTAssertFalse(lineWasRetrieved, "")
@@ -75,7 +75,7 @@ class FileInput_tests: XCTestCase {
     
     func test_fileInput_iteratesLines() {
         var lineWasRetrieved = false
-        for line in FileInput(filePath: _licenseFilePath()) {
+        for _ in FileInput(filePath: _licenseFilePath()) {
             lineWasRetrieved = true
         }
         XCTAssertTrue(lineWasRetrieved, "")
@@ -222,12 +222,12 @@ class FileInput_tests: XCTestCase {
         let dogNewline = "🐶\n"
         XCTAssertEqual(
             fooNewline.findFirstSpace()!,
-            advance(fooNewline.startIndex, 3),
+            fooNewline.startIndex.advancedBy(3),
             ""
         )
         XCTAssertEqual(
             dogNewline.findFirstSpace()!,
-            advance(dogNewline.startIndex, 1),
+            dogNewline.startIndex.advancedBy(1),
             ""
         )
         
@@ -235,12 +235,12 @@ class FileInput_tests: XCTestCase {
         let dogSpace = "🐶   \t\r\n"
         XCTAssertEqual(
             fooSpace.findFirstSpace()!,
-            advance(fooSpace.startIndex, 3),
+            fooSpace.startIndex.advancedBy(3),
             ""
         )
         XCTAssertEqual(
             dogSpace.findFirstSpace()!,
-            advance(dogSpace.startIndex, 1),
+            dogSpace.startIndex.advancedBy(1),
             ""
         )
     }

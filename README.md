@@ -19,7 +19,7 @@ More documentation [here](../../wiki).
 
 ### Dependencies
 
-Requires Xcode 6.3 or later.
+Requires Xcode 7.0 or later.
 
 
 ### Installation
