@@ -52,7 +52,7 @@ extension String {
 class FileInput_tests: XCTestCase {
 
     func test_defaultFileInput_usesStandardInput() {
-        XCTAssertEqual(FileInput.filePath!, "-", "")
+        XCTAssertEqual(FileInput().filePath!, "-", "")
     }
     
     func test_badFileInput_returnsNoLines() {
@@ -62,7 +62,7 @@ class FileInput_tests: XCTestCase {
     
     func test_badFileInput_iteratesNoLines() {
         var lineWasRetrieved = false
-        for line in FileInput(filePath: _badFilePath()) {
+        for _ in FileInput(filePath: _badFilePath()) {
             lineWasRetrieved = true
         }
         XCTAssertFalse(lineWasRetrieved, "")
@@ -75,7 +75,7 @@ class FileInput_tests: XCTestCase {
     
     func test_fileInput_iteratesLines() {
         var lineWasRetrieved = false
-        for line in FileInput(filePath: _licenseFilePath()) {
+        for _ in FileInput(filePath: _licenseFilePath()) {
             lineWasRetrieved = true
         }
         XCTAssertTrue(lineWasRetrieved, "")

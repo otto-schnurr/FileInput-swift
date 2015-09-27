@@ -239,7 +239,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = "$(DT_TOOLCHAIN_DIR)/usr/bin/swift -F $(CONFIGURATION_BUILD_DIR)";
-			shellScript = "import FileInput\nprintln(\"testing: long lines\")\n\nfunc _assertTrue<T: BooleanType>(\n     @autoclosure condition: () -> T,\n    message: String\n) {\n    if !condition() {\n        println(\"failed \\(message)\")\n        exit(EXIT_FAILURE)\n    }\n}\n\nextension String {\n    var length: Int { return count(self) }\n}\n\nlet sourceRoot = String.fromCString(getenv(\"SRCROOT\"))!\nvar lineCount = 0\nfor line in FileInput(filePath: sourceRoot + \"/Test/long-lines.txt\") {\n    switch lineCount++ {\n        case 0:\n            _assertTrue(\n                line.length == 68, \"Expected 68 characters. Got \\(line.length)\"\n            )\n        case 2:\n            _assertTrue(\n                line.length == 407, \"Expected 408 characters. Got \\(line.length)\"\n            )\n        case 4:\n            _assertTrue(\n                line.length == 1631, \"Expected 1631 characters. Got \\(line.length)\"\n            )\n        default:\n            _assertTrue(\n                line.length > 0, \"Expected some characters. Got none.\"\n            )\n    }\n}\n";
+			shellScript = "import FileInput\nprint(\"testing: long lines\")\n\nfunc _assertTrue<T: BooleanType>(\n     @autoclosure condition: () -> T,\n    _ message: String\n) {\n    if !condition() {\n        print(\"failed \\(message)\")\n        exit(EXIT_FAILURE)\n    }\n}\n\nextension String {\n    var length: Int { return self.characters.count }\n}\n\nlet sourceRoot = String.fromCString(getenv(\"SRCROOT\"))!\nvar lineCount = 0\nfor line in FileInput(filePath: sourceRoot + \"/Test/long-lines.txt\") {\n    switch lineCount++ {\n        case 0:\n            _assertTrue(\n                line.length == 68, \"Expected 68 characters. Got \\(line.length)\"\n            )\n        case 2:\n            _assertTrue(\n                line.length == 407, \"Expected 408 characters. Got \\(line.length)\"\n            )\n        case 4:\n            _assertTrue(\n                line.length == 1631, \"Expected 1631 characters. Got \\(line.length)\"\n            )\n        default:\n            _assertTrue(\n                line.length > 0, \"Expected some characters. Got none.\"\n            )\n    }\n}\n";
 			showEnvVarsInLog = 0;
 		};
 		277DB73419AAB16800F0AF48 /* ShellScript */ = {
@@ -253,7 +253,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = "$(DT_TOOLCHAIN_DIR)/usr/bin/swift -F $(CONFIGURATION_BUILD_DIR)";
-			shellScript = "import FileInput\nprintln(\"testing: Can import FileInput module.\")";
+			shellScript = "import FileInput\nprint(\"testing: Can import FileInput module.\")";
 			showEnvVarsInLog = 0;
 		};
 		27DD8FA919AFA49E008F925F /* ShellScript */ = {
@@ -267,7 +267,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = "$(DT_TOOLCHAIN_DIR)/usr/bin/swift -F $(CONFIGURATION_BUILD_DIR)";
-			shellScript = "import FileInput\nprintln(\"testing: bad file path\")\n\nfunc _assertTrue<T: BooleanType>(\n   @autoclosure condition: () -> T,\n   message: String\n) {\n    if !condition() {\n        println(\"failed \\(message)\")\n        exit(EXIT_FAILURE)\n    }\n}\n\nlet badFilePath = \"foo\"\nlet badLines = FileInput(filePath: badFilePath)\n_assertTrue(badLines.nextLine() == nil, \"Bad FileInput should have no lines.\")\n\nvar lineWasRetrieved = false\nfor line in FileInput(filePath: badFilePath) {\n    lineWasRetrieved = true\n}\n_assertTrue(!lineWasRetrieved, \"Bad FileInput should not iterate.\")";
+			shellScript = "import FileInput\nprint(\"testing: bad file path\")\n\nfunc _assertTrue<T: BooleanType>(\n   @autoclosure condition: () -> T,\n   _ message: String\n) {\n    if !condition() {\n        print(\"failed \\(message)\")\n        exit(EXIT_FAILURE)\n    }\n}\n\nlet badFilePath = \"foo\"\nlet badLines = FileInput(filePath: badFilePath)\n_assertTrue(badLines.nextLine() == nil, \"Bad FileInput should have no lines.\")\n\nvar lineWasRetrieved = false\nfor line in FileInput(filePath: badFilePath) {\n    lineWasRetrieved = true\n}\n_assertTrue(!lineWasRetrieved, \"Bad FileInput should not iterate.\")";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
