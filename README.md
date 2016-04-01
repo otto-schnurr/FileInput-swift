@@ -46,7 +46,7 @@ More documentation [here](../../wiki).
 
 ### Dependencies
 
-Requires Xcode 7.0 or later.
+Requires Xcode 7.3 or later.
 
 
 ### Installation
