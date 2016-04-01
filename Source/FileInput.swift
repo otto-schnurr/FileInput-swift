@@ -47,7 +47,7 @@ public class FileInput: SequenceType {
     public typealias Generator = AnyGenerator<LineOfText>
     
     public func generate() -> Generator {
-        return anyGenerator { return self.nextLine() }
+        return AnyGenerator { return self.nextLine() }
     }
     
     /// Constructs a sequence to iterate lines of standrd input.
@@ -141,7 +141,7 @@ extension String {
     public func findFirstSpace() -> String.Index? {
         var result: String.Index? = nil
         
-        for var index = self.startIndex; index < self.endIndex; index = index.successor() {
+        for index in self.startIndex ..< self.endIndex {
             if self[index].isSpace() {
                 result = index
                 break
@@ -192,7 +192,7 @@ private class _FileLines: SequenceType {
         return lines
     }
     
-    func generate() -> Generator { return anyGenerator { self.nextLine() } }
+    func generate() -> Generator { return AnyGenerator { self.nextLine() } }
     
     func nextChunk() -> String? {
         var result: String? = nil;

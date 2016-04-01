@@ -93,20 +93,22 @@ class FileInput_tests: XCTestCase {
         for line in lines {
             switch lines.filePath! {
                 case licensePath:
-                    switch licenseLineCount++ {
+                    switch licenseLineCount {
                         case 0: XCTAssertEqual(line, "The MIT License (MIT)\n", "")
                         case 1: XCTAssertEqual(line, "\n", "")
                         case 2: XCTAssertEqual(line, "Copyright (c) 2014 Otto Schnurr\n", "")
                         default: XCTAssertNotNil(line, "")
                     }
+                    licenseLineCount += 1
                 case readmePath:
-                    switch readmeLineCount++ {
+                    switch readmeLineCount {
                         case 0: XCTAssertEqual(line, "FileInput\n", "")
                         case 1: XCTAssertEqual(line, "=========\n", "")
                         case 2: XCTAssertEqual(line, "\n", "")
                         case 3: XCTAssertEqual(line, "A pipe for streaming text from the command line into Swift scripts.\n", "")
                         default: XCTAssertNotNil(line, "")
                     }
+                    readmeLineCount += 1
                 default:
                     XCTFail("Unknown file path.")
             }
@@ -119,12 +121,13 @@ class FileInput_tests: XCTestCase {
     func test_fileInput_preservesLongLines() {
         var lineCount = 0
         for line in FileInput(filePath: _longLineFilePath()) {
-            switch lineCount++ {
+            switch lineCount {
                 case 0: XCTAssertEqual(line.length, 68, "")
                 case 2: XCTAssertEqual(line.length, 407, "")
                 case 4: XCTAssertEqual(line.length, 1631, "")
                 default: XCTAssertGreaterThan(line.length, 0, "")
             }
+            lineCount += 1
         }
         
         XCTAssertGreaterThan(lineCount, 0, "Failed to parse any long lines.")
