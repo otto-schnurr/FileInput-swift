@@ -19,11 +19,11 @@ import Darwin
 public func input() -> FileInput {
     var arguments = [String]()
 
-    for index in 0 ..< Int(Process.argc) {
+    for index in 0 ..< Int(CommandLine.argc) {
         switch index {
             case 0: continue
             default:
-                if let argument = String.fromCString(Process.unsafeArgv[index]) {
+                if let argument = String(validatingUTF8: Process.unsafeArgv[index]) {
                     arguments.append(argument)
                 }
         }
@@ -42,12 +42,12 @@ public func input() -> FileInput {
 public typealias LineOfText = String
 
 /// A sequence that vends LineOfText objects.
-public class FileInput: SequenceType {
+open class FileInput: Sequence {
 
-    public typealias Generator = AnyGenerator<LineOfText>
+    public typealias Iterator = AnyIterator<LineOfText>
     
-    public func generate() -> Generator {
-        return AnyGenerator { return self.nextLine() }
+    open func makeIterator() -> Iterator {
+        return AnyIterator { return self.nextLine() }
     }
     
     /// Constructs a sequence to iterate lines of standrd input.
@@ -69,16 +69,16 @@ public class FileInput: SequenceType {
     }
 
     /// The file used in the previous call to nextLine().
-    public var filePath: String? {
+    open var filePath: String? {
         return filePaths.count > 0 ? filePaths[0] : nil
     }
     
     /// Newline characters that delimit lines are not removed.
-    public func nextLine() -> LineOfText? {
+    open func nextLine() -> LineOfText? {
         var result: LineOfText? = self.lines?.nextLine()
         
         while result == nil && self.filePath != nil {
-            filePaths.removeAtIndex(0)
+            filePaths.remove(at: 0)
             self.openNextFile()
             result = self.lines?.nextLine()
         }
@@ -87,10 +87,10 @@ public class FileInput: SequenceType {
     }
 
     // MARK: Private
-    private var filePaths: [String]
-    private var lines: _FileLines? = nil
+    fileprivate var filePaths: [String]
+    fileprivate var lines: _FileLines? = nil
 
-    private func openNextFile() {
+    fileprivate func openNextFile() {
         if let filePath = self.filePath {
             self.lines = _FileLines.linesForFilePath(filePath)
         }
@@ -113,7 +113,7 @@ extension String {
                 break
             }
             
-            start = start.successor()
+            start = <#T##Collection corresponding to `start`##Collection#>.index(after: start)
         }
         
         return String(characters[start..<characters.endIndex])
@@ -125,7 +125,7 @@ extension String {
         var end = characters.endIndex
         
         while characters.startIndex < end {
-            let previousIndex = end.predecessor()
+            let previousIndex = <#T##Collection corresponding to `end`##Collection#>.index(before: end)
             
             if !characters[previousIndex].isSpace() {
                 break
@@ -141,7 +141,7 @@ extension String {
     public func findFirstSpace() -> String.Index? {
         var result: String.Index? = nil
         
-        for index in self.startIndex ..< self.endIndex {
+        for index in self.characters.indices {
             if self[index].isSpace() {
                 result = index
                 break
@@ -158,11 +158,11 @@ extension String {
 
 private let _stdinPath = "-"
 
-private class _FileLines: SequenceType {
+private class _FileLines: Sequence {
 
-    typealias Generator = AnyGenerator<LineOfText>
-    let file: UnsafeMutablePointer<FILE>
-    var charBuffer = [CChar](count: 512, repeatedValue: 0)
+    typealias Iterator = AnyIterator<LineOfText>
+    let file: UnsafeMutablePointer<FILE>?
+    var charBuffer = [CChar](repeating: 0, count: 512)
     
     init(file: UnsafeMutablePointer<FILE>) {
         self.file = file
@@ -174,7 +174,7 @@ private class _FileLines: SequenceType {
         }
     }
     
-    class func linesForFilePath(filePath: String) -> _FileLines? {
+    class func linesForFilePath(_ filePath: String) -> _FileLines? {
         var lines: _FileLines? = nil
         
         if filePath == _stdinPath {
@@ -185,21 +185,21 @@ private class _FileLines: SequenceType {
                 print("can't open \(filePath)")
             }
             else {
-                lines = _FileLines(file: file)
+                lines = _FileLines(file: file!)
             }
         }
         
         return lines
     }
     
-    func generate() -> Generator { return AnyGenerator { self.nextLine() } }
+    func makeIterator() -> Iterator { return AnyIterator { self.nextLine() } }
     
     func nextChunk() -> String? {
         var result: String? = nil;
     
         if file != nil {
             if fgets(&charBuffer, Int32(charBuffer.count), file) != nil {
-                result = String.fromCString(charBuffer)
+                result = String(cString: charBuffer)
             }
         }
         
@@ -226,7 +226,7 @@ private class _FileLines: SequenceType {
 
 
 extension Character {
-    private func isSpace() -> Bool {
+    fileprivate func isSpace() -> Bool {
         let characterString = String(self)
         for uCharacter in characterString.unicodeScalars {
             if !uCharacter.isSpace() {
@@ -239,7 +239,7 @@ extension Character {
 }
 
 extension UnicodeScalar {
-    private func isSpace() -> Bool {
+    fileprivate func isSpace() -> Bool {
         let wCharacter = wint_t(self.value)
         return iswspace(wCharacter) != 0
     }

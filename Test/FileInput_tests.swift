@@ -18,23 +18,23 @@ private func _badFilePath() -> String {
 }
 
 private func _licenseFilePath() -> String {
-    let classBundle = NSBundle(forClass: FileInput_tests.self)
-    return classBundle.pathForResource("LICENSE", ofType: "txt")!
+    let classBundle = Bundle(for: FileInput_tests.self)
+    return classBundle.path(forResource: "LICENSE", ofType: "txt")!
 }
 
 private func _readmeFilePath() -> String {
-    let classBundle = NSBundle(forClass: FileInput_tests.self)
-    return classBundle.pathForResource("README", ofType: "md")!
+    let classBundle = Bundle(for: FileInput_tests.self)
+    return classBundle.path(forResource: "README", ofType: "md")!
 }
 
 private func _longLineFilePath() -> String {
-    let classBundle = NSBundle(forClass: FileInput_tests.self)
-    return classBundle.pathForResource("long-lines", ofType: "txt")!
+    let classBundle = Bundle(for: FileInput_tests.self)
+    return classBundle.path(forResource: "long-lines", ofType: "txt")!
 }
 
 private func _unicodeFilePath() -> String {
-    let classBundle = NSBundle(forClass: FileInput_tests.self)
-    return classBundle.pathForResource("unicode", ofType: "txt")!
+    let classBundle = Bundle(for: FileInput_tests.self)
+    return classBundle.path(forResource: "unicode", ofType: "txt")!
 }
 
 
@@ -52,7 +52,7 @@ extension String {
 class FileInput_tests: XCTestCase {
 
     func test_defaultFileInput_usesStandardInput() {
-        XCTAssertEqual(FileInput().filePath!, "-", "")
+        XCTAssertEqual(FileInput.filePath!, "-", "")
     }
     
     func test_badFileInput_returnsNoLines() {
@@ -225,12 +225,12 @@ class FileInput_tests: XCTestCase {
         let dogNewline = "🐶\n"
         XCTAssertEqual(
             fooNewline.findFirstSpace()!,
-            fooNewline.startIndex.advancedBy(3),
+            fooNewline.characters.index(fooNewline.startIndex, offsetBy: 3),
             ""
         )
         XCTAssertEqual(
             dogNewline.findFirstSpace()!,
-            dogNewline.startIndex.advancedBy(1),
+            dogNewline.characters.index(dogNewline.startIndex, offsetBy: 1),
             ""
         )
         
@@ -238,12 +238,12 @@ class FileInput_tests: XCTestCase {
         let dogSpace = "🐶   \t\r\n"
         XCTAssertEqual(
             fooSpace.findFirstSpace()!,
-            fooSpace.startIndex.advancedBy(3),
+            fooSpace.characters.index(fooSpace.startIndex, offsetBy: 3),
             ""
         )
         XCTAssertEqual(
             dogSpace.findFirstSpace()!,
-            dogSpace.startIndex.advancedBy(1),
+            dogSpace.characters.index(dogSpace.startIndex, offsetBy: 1),
             ""
         )
     }
