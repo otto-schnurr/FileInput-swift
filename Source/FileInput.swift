@@ -17,20 +17,9 @@ import Darwin
 ///
 /// A file path of "-" is replaced with standard input.
 public func input() -> FileInput {
-    var arguments = [String]()
-
-    for index in 0 ..< Int(CommandLine.argc) {
-        switch index {
-            case 0: continue
-            default:
-                if let argument = String(validatingUTF8: Process.unsafeArgv[index]) {
-                    arguments.append(argument)
-                }
-        }
-    }
-
-    let filePaths = [String](arguments.count > 0 ? arguments : ["-"])
-    return FileInput(filePaths: filePaths)
+    let arguments = CommandLine.arguments.dropFirst()
+    guard !arguments.isEmpty else { return FileInput() }
+    return FileInput(filePaths: Array(arguments))
 }
 
 
@@ -113,7 +102,7 @@ extension String {
                 break
             }
             
-            start = <#T##Collection corresponding to `start`##Collection#>.index(after: start)
+            start = characters.index(after: start)
         }
         
         return String(characters[start..<characters.endIndex])
@@ -125,7 +114,7 @@ extension String {
         var end = characters.endIndex
         
         while characters.startIndex < end {
-            let previousIndex = <#T##Collection corresponding to `end`##Collection#>.index(before: end)
+            let previousIndex = characters.index(before: end)
             
             if !characters[previousIndex].isSpace() {
                 break

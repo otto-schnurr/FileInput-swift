@@ -52,7 +52,7 @@ extension String {
 class FileInput_tests: XCTestCase {
 
     func test_defaultFileInput_usesStandardInput() {
-        XCTAssertEqual(FileInput.filePath!, "-", "")
+        XCTAssertEqual(FileInput().filePath!, "-", "")
     }
     
     func test_badFileInput_returnsNoLines() {
@@ -131,10 +131,6 @@ class FileInput_tests: XCTestCase {
         }
         
         XCTAssertGreaterThan(lineCount, 0, "Failed to parse any long lines.")
-    }
-    
-    func test_defaultArgvInput_usesStandardInput() {
-        XCTAssertEqual(input().filePath!, "-", "")
     }
     
     func test_unicodeInput_preservesUnicode() {
