@@ -41,14 +41,6 @@ private func _unicodeFilePath() -> String {
 // MARK: -
 
 
-extension String {
-    var length: Int { return self.characters.count }
-}
-
-
-// MARK: -
-
-
 class FileInput_tests: XCTestCase {
 
     func test_defaultFileInput_usesStandardInput() {
@@ -122,10 +114,10 @@ class FileInput_tests: XCTestCase {
         var lineCount = 0
         for line in FileInput(filePath: _longLineFilePath()) {
             switch lineCount {
-                case 0: XCTAssertEqual(line.length, 68, "")
-                case 2: XCTAssertEqual(line.length, 407, "")
-                case 4: XCTAssertEqual(line.length, 1631, "")
-                default: XCTAssertGreaterThan(line.length, 0, "")
+                case 0: XCTAssertEqual(line.count, 68, "")
+                case 2: XCTAssertEqual(line.count, 407, "")
+                case 4: XCTAssertEqual(line.count, 1631, "")
+                default: XCTAssertGreaterThan(line.count, 0, "")
             }
             lineCount += 1
         }
@@ -221,12 +213,12 @@ class FileInput_tests: XCTestCase {
         let dogNewline = "🐶\n"
         XCTAssertEqual(
             fooNewline.findFirstSpace()!,
-            fooNewline.characters.index(fooNewline.startIndex, offsetBy: 3),
+            fooNewline.index(fooNewline.startIndex, offsetBy: 3),
             ""
         )
         XCTAssertEqual(
             dogNewline.findFirstSpace()!,
-            dogNewline.characters.index(dogNewline.startIndex, offsetBy: 1),
+            dogNewline.index(dogNewline.startIndex, offsetBy: 1),
             ""
         )
         
@@ -234,12 +226,12 @@ class FileInput_tests: XCTestCase {
         let dogSpace = "🐶   \t\r\n"
         XCTAssertEqual(
             fooSpace.findFirstSpace()!,
-            fooSpace.characters.index(fooSpace.startIndex, offsetBy: 3),
+            fooSpace.index(fooSpace.startIndex, offsetBy: 3),
             ""
         )
         XCTAssertEqual(
             dogSpace.findFirstSpace()!,
-            dogSpace.characters.index(dogSpace.startIndex, offsetBy: 1),
+            dogSpace.index(dogSpace.startIndex, offsetBy: 1),
             ""
         )
     }
