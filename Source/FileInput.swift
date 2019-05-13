@@ -130,7 +130,7 @@ extension String {
     public func findFirstSpace() -> String.Index? {
         var result: String.Index? = nil
         
-        for index in self.characters.indices {
+        for index in self.indices {
             if self[index].isSpace() {
                 result = index
                 break

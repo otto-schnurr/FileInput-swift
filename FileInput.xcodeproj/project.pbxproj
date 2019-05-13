@@ -178,16 +178,16 @@
 			attributes = {
 				LastSwiftMigration = 0700;
 				LastSwiftUpdateCheck = 0700;
-				LastUpgradeCheck = 0830;
+				LastUpgradeCheck = 1010;
 				ORGANIZATIONNAME = "Otto Schnurr";
 				TargetAttributes = {
 					2717E3C519A9655E00405AA0 = {
 						CreatedOnToolsVersion = 6.0;
-						LastSwiftMigration = 0830;
+						LastSwiftMigration = 1010;
 					};
 					277DB71F19A994FD00F0AF48 = {
 						CreatedOnToolsVersion = 6.0;
-						LastSwiftMigration = 0830;
+						LastSwiftMigration = 1010;
 					};
 				};
 			};
@@ -241,7 +241,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = "$(DT_TOOLCHAIN_DIR)/usr/bin/swift -F $(CONFIGURATION_BUILD_DIR)";
-			shellScript = "import FileInput\nprint(\"testing: long lines\")\n\nfunc _assertTrue(\n    _ condition: Bool,\n    _ message: String\n) {\n    if !condition {\n        print(\"failed \\(message)\")\n        exit(EXIT_FAILURE)\n    }\n}\n\nextension String {\n    var length: Int { return self.characters.count }\n}\n\nlet sourceRoot = String(validatingUTF8: getenv(\"SRCROOT\")!)!\nvar lineCount = 0\nfor line in FileInput(filePath: sourceRoot + \"/Test/long-lines.txt\") {\n    switch lineCount {\n        case 0:\n            _assertTrue(\n                line.length == 68, \"Expected 68 characters. Got \\(line.length)\"\n            )\n        case 2:\n            _assertTrue(\n                line.length == 407, \"Expected 408 characters. Got \\(line.length)\"\n            )\n        case 4:\n            _assertTrue(\n                line.length == 1631, \"Expected 1631 characters. Got \\(line.length)\"\n            )\n        default:\n            _assertTrue(\n                line.length > 0, \"Expected some characters. Got none.\"\n            )\n    }\n    \n    lineCount += 1\n}\n";
+			shellScript = "import FileInput\nprint(\"testing: long lines\")\n\nfunc _assertTrue(\n    _ condition: Bool,\n    _ message: String\n) {\n    if !condition {\n        print(\"failed \\(message)\")\n        exit(EXIT_FAILURE)\n    }\n}\n\nlet sourceRoot = String(validatingUTF8: getenv(\"SRCROOT\")!)!\nvar lineCount = 0\nfor line in FileInput(filePath: sourceRoot + \"/Test/long-lines.txt\") {\n    switch lineCount {\n        case 0:\n            _assertTrue(\n                line.count == 68, \"Expected 68 characters. Got \\(line.count)\"\n            )\n        case 2:\n            _assertTrue(\n                line.count == 407, \"Expected 408 characters. Got \\(line.count)\"\n            )\n        case 4:\n            _assertTrue(\n                line.count == 1631, \"Expected 1631 characters. Got \\(line.count)\"\n            )\n        default:\n            _assertTrue(\n                !line.isEmpty, \"Expected some characters. Got none.\"\n            )\n    }\n    \n    lineCount += 1\n}\n";
 			showEnvVarsInLog = 0;
 		};
 		277DB73419AAB16800F0AF48 /* ShellScript */ = {
@@ -255,7 +255,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = "$(DT_TOOLCHAIN_DIR)/usr/bin/swift -F $(CONFIGURATION_BUILD_DIR)";
-			shellScript = "import FileInput\nprint(\"testing: Can import FileInput module.\")";
+			shellScript = "import FileInput\nprint(\"testing: Can import FileInput module.\")\n";
 			showEnvVarsInLog = 0;
 		};
 		27DD8FA919AFA49E008F925F /* ShellScript */ = {
@@ -269,7 +269,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = "$(DT_TOOLCHAIN_DIR)/usr/bin/swift -F $(CONFIGURATION_BUILD_DIR)";
-			shellScript = "import FileInput\nprint(\"testing: bad file path\")\n\nfunc _assertTrue(\n    _ condition: Bool,\n    _ message: String\n) {\n    if !condition {\n        print(\"failed \\(message)\")\n        exit(EXIT_FAILURE)\n    }\n}\n\nlet badFilePath = \"foo\"\nlet badLines = FileInput(filePath: badFilePath)\n_assertTrue(badLines.nextLine() == nil, \"Bad FileInput should have no lines.\")\n\nvar lineWasRetrieved = false\nfor line in FileInput(filePath: badFilePath) {\n    lineWasRetrieved = true\n}\n_assertTrue(!lineWasRetrieved, \"Bad FileInput should not iterate.\")";
+			shellScript = "import FileInput\nprint(\"testing: bad file path\")\n\nfunc _assertTrue(\n    _ condition: Bool,\n    _ message: String\n) {\n    if !condition {\n        print(\"failed \\(message)\")\n        exit(EXIT_FAILURE)\n    }\n}\n\nlet badFilePath = \"foo\"\nlet badLines = FileInput(filePath: badFilePath)\n_assertTrue(badLines.nextLine() == nil, \"Bad FileInput should have no lines.\")\n\nvar lineWasRetrieved = false\nfor _ in FileInput(filePath: badFilePath) {\n    lineWasRetrieved = true\n}\n_assertTrue(!lineWasRetrieved, \"Bad FileInput should not iterate.\")\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -313,16 +313,23 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_REPEATED_USE_OF_WEAK = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -373,16 +380,23 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_REPEATED_USE_OF_WEAK = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -432,7 +446,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.2;
 			};
 			name = Debug;
 		};
@@ -452,7 +466,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.ottoschnurr.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.2;
 			};
 			name = Release;
 		};
@@ -472,7 +486,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.ottoschnurr.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.2;
 			};
 			name = Debug;
 		};
@@ -488,7 +502,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.ottoschnurr.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.2;
 			};
 			name = Release;
 		};
